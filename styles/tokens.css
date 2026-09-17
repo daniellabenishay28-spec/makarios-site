@@ -1,0 +1,76 @@
+/**
+ * Design tokens — Makarios Corporation
+ *
+ * Source unique de vérité pour les valeurs visuelles du site, extraites des
+ * 26 maquettes V4 (canvas Design, verrouillé). Aucune valeur ne doit être
+ * dupliquée en dur dans un composant : tout passe par ces tokens, soit en
+ * CSS custom properties (--mk-*), soit via les classes utilitaires Tailwind
+ * générées par le bloc @theme ci-dessous.
+ *
+ * Ne pas ajouter de nouvelle couleur, typographie, rayon ou ombre ici sans
+ * qu'elle soit présente dans une des 26 maquettes de référence.
+ */
+
+@theme {
+  /* ---- Couleurs : on repart de zéro puis on ne déclare que le système Makarios ---- */
+  --color-*: initial;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-green: #32b44a;
+  --color-error: #b5544a;
+  --color-bg: #f7f7f7; /* fond gris très clair — panneau de référence des états du formulaire (Contact) */
+
+  /* ---- Rayons : aucun coin arrondi sur le site, jamais ---- */
+  --radius-*: initial;
+  --radius-none: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 0px;
+
+  /* ---- Ombres : aucune ombre décorative sur le site, jamais ---- */
+  --shadow-*: initial;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-2xl: none;
+  --shadow-inner: none;
+
+  /* ---- Typographie : Poppins (display) + Inter (corps), reliées aux variables next/font ---- */
+  --font-display: var(--font-poppins), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+
+  /*
+   * Spacing : la base Tailwind v4 (--spacing: 0.25rem = 4px) génère déjà tous
+   * les multiples de 8px utilisés dans les maquettes (p-2 = 8px, p-4 = 16px,
+   * p-6 = 24px, p-8 = 32px, p-10 = 40px, p-12 = 48px, p-14 = 56px, p-16 = 64px,
+   * p-20 = 80px, p-24 = 96px) : aucune redéfinition nécessaire, on utilise ces
+   * classes directement plutôt que des valeurs arbitraires.
+   */
+
+  /*
+   * Points de rupture : les 3 zones définies dans le plan technique.
+   * Mobile (référence 390px) reste la valeur par défaut sans préfixe.
+   */
+  --breakpoint-*: initial;
+  --breakpoint-md: 48rem; /* 768px — début de la zone intermédiaire */
+  --breakpoint-desktop: 75rem; /* 1200px — début du système desktop (grille 12 colonnes, réf. 1440px) */
+}
+
+:root {
+  /* Grille */
+  --mk-grid-desktop-width: 1440px;
+  --mk-grid-desktop-columns: 12;
+  --mk-grid-desktop-gutter: 24px;
+  --mk-grid-desktop-margin: 80px;
+  --mk-grid-mobile-width: 390px;
+  --mk-grid-mobile-margin: 24px;
+
+  /* Bordures fines (jamais d'ombre) */
+  --mk-border-on-black: rgba(255, 255, 255, 0.12);
+  --mk-border-on-white: rgba(0, 0, 0, 0.1);
+}

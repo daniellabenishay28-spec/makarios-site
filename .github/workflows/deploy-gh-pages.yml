@@ -1,0 +1,72 @@
+# Publication de la VERSION DE VALIDATION du site Makarios sur GitHub Pages.
+#
+# Déclenchement manuel uniquement (workflow_dispatch) — rien ne se publie
+# automatiquement sur un push, tant que Daniella ne lance pas ce workflow
+# elle-même depuis l'onglet "Actions" du dépôt (bouton "Run workflow").
+#
+# Prérequis à faire une seule fois, dans les paramètres du dépôt GitHub :
+# Settings → Pages → "Build and deployment" → Source = "GitHub Actions".
+#
+# Ce workflow ne touche pas au déploiement Vercel : il utilise une variable
+# d'environnement dédiée (DEPLOY_TARGET=github-pages, voir next.config.ts)
+# qui n'existe que dans ce job CI.
+name: Deploy validation build to GitHub Pages
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export for GitHub Pages
+        run: npm run build
+        env:
+          DEPLOY_TARGET: github-pages
+          # Calculé par configure-pages à partir du dépôt (vide si
+          # <compte>.github.io, "/<repo>" sinon) — jamais figé en dur.
+          NEXT_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+
+      - name: Add .nojekyll (so GitHub Pages serves the _next/ folder)
+        run: touch out/.nojekyll
+
+      - name: Upload static export
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

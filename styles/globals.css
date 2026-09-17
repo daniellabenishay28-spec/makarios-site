@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/**
+ * Reset et styles globaux — cohérents avec les 26 maquettes V4.
+ * Aucun border-radius, aucune ombre : voir styles/tokens.css.
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-body);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* État de focus visible, cohérent avec le vert de focus déjà maquetté sur le formulaire Contact */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 2px;
+}
+
+/*
+ * Échelle d'opacité de texte observée dans les 26 maquettes — référence pour
+ * les composants (via les utilitaires Tailwind text-white/NN, text-black/NN) :
+ *   sur fond noir : .85 .75 .65 .55 .5 .4 .32 .24
+ *   sur fond blanc : .75 .62 .55 .45 .4 .35 .3 .28
+ */
