@@ -31,7 +31,8 @@ export const poles: Pole[] = [
     slug: "business-solutions",
     number: "01",
     name: "Business Solutions",
-    heroType: "pole-editorial",
+    heroType: "pole-photo",
+    image: { src: "/images/hero-business-solutions.jpg", alt: "Business Solutions" },
     headline: "Conseil & Développement.",
     subheadline: "Structurer. Accompagner. Faire avancer.",
     intro:
@@ -99,7 +100,8 @@ export const poles: Pole[] = [
     slug: "industries-services",
     number: "03",
     name: "Industries & Services",
-    heroType: "pole-editorial",
+    heroType: "pole-photo",
+    image: { src: "/images/hero-industries-services.jpg", alt: "Industries & Services" },
     headline: "Opérations & Solutions.",
     subheadline: "Produire. Transformer. Valoriser.",
     intro:
