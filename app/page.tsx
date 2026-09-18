@@ -129,7 +129,7 @@ export default function HomePage() {
               <div className="relative z-10">
                 <span className="font-display font-extrabold text-xl text-green">{pole.number}</span>
                 <div className="font-display font-semibold text-2xl md:text-[27px] text-white mt-2">
-                  {pole.name}
+                  {`MAKARIOS ${pole.name}`.toUpperCase()}
                 </div>
                 <div className="font-body text-xs md:text-[13px] text-white/58 mt-2">
                   {poleTeaserTaglines[pole.slug]}

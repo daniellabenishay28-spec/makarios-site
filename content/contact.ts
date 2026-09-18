@@ -44,7 +44,8 @@ export const submitButtonLabel = "Send message";
 export const companyInfo = {
   phone: "+243 832 000 071",
   email: "contact@makarios.cd",
-  address: "Concession COTEX, 63 Av. Colonel Mondjiba, Gombe, Kinshasa, RDC",
+  address:
+    "Concession COTEX, 63 Av. Colonel Mondjiba, Gombe, Kinshasa, République Démocratique du Congo",
   socials: [
     { label: "Facebook", href: "#" },
     { label: "Instagram", href: "#" },

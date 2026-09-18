@@ -11,9 +11,23 @@ export const aboutIntro = {
   headline: "Une entreprise multisectorielle, née à Kinshasa.",
   headlineAccent: "Kinshasa",
   subheadline: "Makarios Corporation Sarl.",
+  // Paragraphe officiel, verbatim de SITE_INTERNET_MAKARIOS.pdf, section
+  // « 02 — ABOUT US ». Remplace l'ancien texte (issu du Company Profile) —
+  // ne jamais reformuler, raccourcir, traduire ou changer la ponctuation.
   body:
-    "MAKARIOS CORPORATION est une entreprise multisectorielle spécialisée dans le développement, le conseil, la distribution et la mise en œuvre de solutions adaptées aux besoins des entreprises et des organisations. À travers nos différents pôles d'activités, nous accompagnons nos partenaires dans leurs enjeux stratégiques, commerciaux, opérationnels et technologiques.",
+    "MAKARIOS CORPORATION est une entreprise multisectorielle qui combine conseil, commerce, distribution, technologie et services opérationnels afin d'accompagner ses partenaires dans leur développement.",
 };
+
+/**
+ * Les deux phrases de différenciation, verbatim de SITE_INTERNET_MAKARIOS.pdf
+ * (même section que aboutIntro.body, juste après). Dans le PDF, la seconde
+ * phrase est en gras — emphasis reprise ici, pas ajoutée. Ne jamais
+ * reformuler ces phrases.
+ */
+export const aboutDifferentiation = [
+  "Notre différence n'est pas simplement la diversité de nos activités.",
+  "Notre différence réside dans notre capacité à connecter ces expertises pour construire des solutions adaptées à chaque besoin.",
+];
 
 export const ecosystemIntro =
   "Makarios construit un écosystème intégré permettant d'accompagner les entreprises de bout en bout.";

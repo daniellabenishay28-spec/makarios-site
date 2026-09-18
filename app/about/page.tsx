@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cta } from "@/components/cta/Cta";
 import { values } from "@/content/values";
-import { aboutIntro, ecosystem, ecosystemIntro, vision } from "@/content/about";
+import { aboutDifferentiation, aboutIntro, ecosystem, ecosystemIntro, vision } from "@/content/about";
 import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
@@ -60,6 +60,20 @@ export default function AboutPage() {
             className="font-body text-sm md:text-[15px] leading-relaxed text-white/75 mt-5 max-w-xl"
           >
             {aboutIntro.body}
+          </Reveal>
+          <Reveal
+            as="p"
+            delay={330}
+            className="font-body text-sm md:text-[15px] leading-relaxed text-white/75 mt-3.5 max-w-xl"
+          >
+            {aboutDifferentiation[0]}
+          </Reveal>
+          <Reveal
+            as="p"
+            delay={390}
+            className="font-body font-semibold text-sm md:text-[15px] leading-relaxed text-white mt-3.5 max-w-xl"
+          >
+            {aboutDifferentiation[1]}
           </Reveal>
         </div>
       </section>
