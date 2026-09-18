@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "@/styles/globals.css";
-import { Header } from "@/components/layout/Header";
-import { HeaderMobile } from "@/components/layout/HeaderMobile";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Footer } from "@/components/layout/Footer";
 
 // Graisses strictement limitées à celles utilisées dans les 26 maquettes V4
@@ -36,9 +35,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={`${poppins.variable} ${inter.variable}`}>
       <body className="min-h-screen flex flex-col bg-black text-white">
-        {/* Header desktop et mobile : le composant décide lui-même de sa visibilité par breakpoint. */}
-        <Header />
-        <HeaderMobile />
+        {/* Header desktop et mobile : le composant décide lui-même de sa visibilité par breakpoint. Variant (light/dark) déterminé par route dans SiteHeader. */}
+        <SiteHeader />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

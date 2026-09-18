@@ -1,8 +1,9 @@
 # Publication de la VERSION DE VALIDATION du site Makarios sur GitHub Pages.
 #
-# Déclenchement manuel uniquement (workflow_dispatch) — rien ne se publie
-# automatiquement sur un push, tant que Daniella ne lance pas ce workflow
-# elle-même depuis l'onglet "Actions" du dépôt (bouton "Run workflow").
+# Déclenchement automatique sur chaque push sur main : build + déploiement
+# s'enchaînent sans action manuelle. workflow_dispatch reste disponible en
+# plus (relance manuelle depuis l'onglet "Actions" si besoin), mais n'est
+# plus le seul déclencheur.
 #
 # Prérequis à faire une seule fois, dans les paramètres du dépôt GitHub :
 # Settings → Pages → "Build and deployment" → Source = "GitHub Actions".
@@ -13,6 +14,9 @@
 name: Deploy validation build to GitHub Pages
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch: {}
 
 permissions:

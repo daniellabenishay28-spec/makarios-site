@@ -1,18 +1,19 @@
 import Link from "next/link";
+import Image from "next/image";
 import { contactCta } from "@/content/nav";
 import { Nav } from "@/components/layout/Nav";
+import { withBasePath } from "@/lib/basePath";
 
 interface HeaderProps {
   /**
-   * "light" (défaut) = logo/nav en blanc, pour les pages à hero noir (la
-   * majorité des 26 maquettes V4). "dark" = logo/nav en noir, requis sur la
-   * page Contact (ouverture à fond blanc, cf. Contact-Desktop.dc.html).
+   * "light" (défaut) = logo texte blanc + nav blanche, pour les pages à hero
+   * noir (la majorité des 26 maquettes V4). "dark" = logo image noire
+   * (logo-dark.png) + nav noire, requis sur la page Contact — seule page à
+   * ouvrir sur fond blanc, cf. Contact-Desktop.dc.html (le lockup texte y
+   * est remplacé par l'image du logo, contrairement aux autres pages).
    *
-   * Le câblage automatique du variant par route (transmettre "dark" depuis
-   * app/contact/page.tsx) n'est PAS fait en Phase 0 — Phase 0 exclut
-   * l'implémentation détaillée des pages. Signalé explicitement ici plutôt
-   * que résolu silencieusement : voir le rapport de fin de Phase 0, point
-   * "Problèmes rencontrés".
+   * Câblé automatiquement par route via components/layout/SiteHeader.tsx
+   * (usePathname), voir app/layout.tsx.
    */
   variant?: "light" | "dark";
 }
@@ -31,11 +32,20 @@ export function Header({ variant = "light" }: HeaderProps) {
         isDark ? "text-black" : "text-white"
       }`}
     >
-      <Link href="/" className="font-display font-bold text-[13px] tracking-[.12em]">
-        MAKARIOS{" "}
-        <span className={isDark ? "font-normal text-black/60" : "font-normal text-white/60"}>
-          CORPORATION
-        </span>
+      <Link href="/" className="flex items-center">
+        {isDark ? (
+          <Image
+            src={withBasePath("/images/logo-dark.png")}
+            alt="Makarios Corporation"
+            width={133}
+            height={22}
+            priority
+          />
+        ) : (
+          <span className="font-display font-bold text-[13px] tracking-[.12em]">
+            MAKARIOS <span className="font-normal text-white/60">CORPORATION</span>
+          </span>
+        )}
       </Link>
 
       <Nav variant={variant} />

@@ -16,7 +16,7 @@ interface ImageSectionProps {
  */
 export function ImageSection({ image, className = "" }: ImageSectionProps) {
   return (
-    <div className={`relative w-full min-h-[320px] bg-[#0a0a0a] overflow-hidden ${className}`}>
+    <div className={`relative w-full min-h-[320px] bg-black overflow-hidden ${className}`}>
       {image ? (
         <Image src={withBasePath(image.src)} alt={image.alt} fill className="object-cover" />
       ) : (

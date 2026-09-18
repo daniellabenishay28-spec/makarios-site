@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { SectionHeading } from "@/components/sections/SectionHeading";
-import { ContactForm } from "@/components/contact/ContactForm";
+import { ContactFormWithPole } from "@/components/contact/ContactFormWithPole";
 import { FormStates } from "@/components/contact/FormStates";
 import { contactHero, companyInfo } from "@/content/contact";
 
@@ -10,13 +11,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Route préparée. Conflit signalé (non résolu silencieusement) : cette page
- * est à fond blanc en ouverture, ce qui exige un Header en variant="dark"
- * (logo/nav noirs, cf. Contact-Desktop.dc.html) — mais app/layout.tsx rend
- * Header/HeaderMobile globalement sans connaissance de la route. Le
- * mécanisme de variant existe déjà dans Header/HeaderMobile/Nav ; le
- * câblage par route (contexte ou layout dédié à ce segment) reste à faire
- * en Phase 1 — voir rapport de fin de Phase 0.
+ * Cette page ouvre sur fond blanc (seule exception des 11 routes) — le
+ * Header/HeaderMobile en variant="dark" correspondant est câblé
+ * automatiquement par route via components/layout/SiteHeader.tsx.
  */
 export default function ContactPage() {
   return (
@@ -33,7 +30,9 @@ export default function ContactPage() {
 
       <div className="bg-white text-black px-6 md:px-20 py-16 grid grid-cols-1 md:grid-cols-12 gap-10">
         <div className="md:col-span-7">
-          <ContactForm />
+          <Suspense fallback={null}>
+            <ContactFormWithPole />
+          </Suspense>
         </div>
         <div className="md:col-span-4 md:col-start-9 flex flex-col gap-6">
           <div className="border-t border-black/10 pt-4">

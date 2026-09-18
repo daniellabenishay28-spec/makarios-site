@@ -1,20 +1,56 @@
 import type { Metadata } from "next";
+import { Cta } from "@/components/cta/Cta";
 import { ApproachSteps } from "@/components/sections/ApproachSteps";
+import { brandSignature, methodEyebrow } from "@/content/approachSteps";
+import { ctas } from "@/content/ctas";
 
 export const metadata: Metadata = {
   title: "Approach",
+  description: "The Makarios Method — Comprendre. Concevoir. Connecter. Exécuter.",
 };
 
-/**
- * Route préparée. La signature de marque et la section blanche de
- * respiration ("The Makarios Method") ne sont pas posées ici — voir la
- * note dans components/sections/ApproachSteps.tsx — implémentation
- * complète prévue en Phase 1.
- */
 export default function ApproachPage() {
   return (
-    <div className="px-6 md:px-20 py-28 md:py-32">
-      <ApproachSteps />
-    </div>
+    <>
+      {/* ============ SECTION 1 — SIGNATURE DE MARQUE ============ */}
+      <section className="relative bg-black min-h-[70vh] md:min-h-[640px] flex flex-col items-center justify-center text-center px-6 py-20 md:py-0">
+        <span className="absolute top-28 left-6 md:left-20 font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-white/55">
+          05 — Our Approach
+        </span>
+        <div className="flex flex-col items-center">
+          {brandSignature.map((word, i) => (
+            <div key={word} className="contents">
+              <span className="font-display font-extrabold text-3xl md:text-[52px] leading-[1.3] tracking-wide text-white">
+                {word}
+              </span>
+              {i < brandSignature.length - 1 && (
+                <span aria-hidden className="w-[26px] h-[2px] bg-green/70 my-3.5" />
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ============ SECTION 2 — RESPIRATION BLANCHE ============ */}
+      <section className="bg-white py-16 md:h-[220px] flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <span className="font-body font-semibold text-xs tracking-[.18em] uppercase text-black/55">
+            {methodEyebrow}
+          </span>
+          <span aria-hidden className="w-[26px] h-[2px] bg-green/60 mt-3.5" />
+        </div>
+      </section>
+
+      {/* ============ SECTION 3 — THE MAKARIOS METHOD (5 ÉTAPES) ============ */}
+      <section className="bg-black px-6 md:px-20 py-20 md:py-24">
+        <ApproachSteps />
+      </section>
+
+      {/* ============ SECTION 4 — CTA DE SORTIE ============ */}
+      <section className="bg-black border-t border-white/10 px-6 md:px-20 py-14 md:py-16 flex flex-col md:flex-row gap-5 md:gap-10 md:items-center">
+        <Cta {...ctas.viewProjects} />
+        <Cta {...ctas.letsTalk} tone="muted" />
+      </section>
+    </>
   );
 }

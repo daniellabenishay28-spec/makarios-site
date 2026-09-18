@@ -36,7 +36,7 @@ export function Hero({ heroType, image, number, eyebrow, headline, subheadline, 
               className="object-cover opacity-70"
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_50%_40%,#1a1a1a,#000)]">
+            <div className="absolute inset-0 flex items-center justify-center bg-black">
               <span className="font-body italic text-sm text-white/35">{missingHeroVisual}</span>
             </div>
           )}

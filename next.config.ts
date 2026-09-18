@@ -19,6 +19,19 @@ const isGithubPagesExport = process.env.DEPLOY_TARGET === "github-pages";
 const basePath = process.env.NEXT_BASE_PATH?.trim() || "";
 
 const nextConfig: NextConfig = {
+  // lib/basePath.ts lit process.env.NEXT_BASE_PATH depuis des composants qui
+  // finissent aussi exécutés côté navigateur (ex. Header/HeaderMobile, rendus
+  // par components/layout/SiteHeader.tsx, un Client Component pour piloter le
+  // variant "dark" de /contact via usePathname). Sans cette entrée `env`,
+  // Next.js n'inline QUE les variables préfixées NEXT_PUBLIC_ dans le bundle
+  // client — NEXT_BASE_PATH y resterait donc `undefined` après hydratation ou
+  // navigation côté client, cassant le préfixe basePath des images fixes
+  // (logo-dark.png). `env` force le remplacement statique à la compilation,
+  // identique côté serveur et client, sans renommer la variable verrouillée
+  // par le workflow GitHub Actions.
+  env: {
+    NEXT_BASE_PATH: basePath,
+  },
   ...(isGithubPagesExport
     ? {
         output: "export",

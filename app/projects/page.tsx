@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Cta } from "@/components/cta/Cta";
 import { ProjectPlaceholder } from "@/components/projects/ProjectPlaceholder";
 import { projectsPlaceholder } from "@/content/placeholders";
+import { ctas } from "@/content/ctas";
 
 export const metadata: Metadata = {
   title: "Projects / Portfolio",
@@ -27,9 +29,15 @@ export default function ProjectsPage() {
 
       <ProjectPlaceholder />
 
-      <p className="font-body italic text-lg text-white/62 max-w-xl">
-        {projectsPlaceholder.editorialNote}
-      </p>
+      <div className="border-t border-white/10 pt-14 md:pt-16 flex flex-col gap-8">
+        <p className="font-body italic text-lg text-white/62 max-w-xl">
+          {projectsPlaceholder.editorialNote}
+        </p>
+        <div className="flex flex-col md:flex-row gap-4 md:gap-10">
+          <Cta {...ctas.discoverMethod} />
+          <Cta {...ctas.letsTalk} tone="muted" />
+        </div>
+      </div>
     </div>
   );
 }

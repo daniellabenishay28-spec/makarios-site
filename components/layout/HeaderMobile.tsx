@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { navLinks, contactCta } from "@/content/nav";
+import { withBasePath } from "@/lib/basePath";
 
 interface HeaderMobileProps {
   /** Voir la même note de variant que Header.tsx — câblage par route laissé à Phase 1/2. */
@@ -24,8 +26,18 @@ export function HeaderMobile({ variant = "light" }: HeaderMobileProps) {
     <header
       className={`md:hidden absolute top-0 inset-x-0 z-20 h-16 flex items-center justify-between px-6 ${textColor}`}
     >
-      <Link href="/" className="font-display font-bold text-xs tracking-[.1em]">
-        MAKARIOS
+      <Link href="/" className="flex items-center">
+        {isDark ? (
+          <Image
+            src={withBasePath("/images/logo-dark.png")}
+            alt="Makarios Corporation"
+            width={109}
+            height={18}
+            priority
+          />
+        ) : (
+          <span className="font-display font-bold text-xs tracking-[.1em]">MAKARIOS</span>
+        )}
       </Link>
 
       <div className="flex items-center gap-4">
