@@ -45,7 +45,7 @@ export function Footer() {
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between pt-7 border-t border-white/8">
         <div className="font-body text-xs text-white/40">
           © {year} {legalNotice.copyrightPrefix}{" "}
-          <Link href="/legal" className="ml-4 text-white/55 underline">
+          <Link href="/legal" prefetch={false} className="ml-4 text-white/55 underline">
             {legalNotice.legalMentionsLabel}
           </Link>
         </div>
