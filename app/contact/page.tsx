@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/sections/SectionHeading";
 import { ContactFormWithPole } from "@/components/contact/ContactFormWithPole";
 import { FormStates } from "@/components/contact/FormStates";
 import { contactHero, companyInfo } from "@/content/contact";
+import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -34,7 +35,7 @@ export default function ContactPage() {
             <ContactFormWithPole />
           </Suspense>
         </div>
-        <div className="md:col-span-4 md:col-start-9 flex flex-col gap-6">
+        <Reveal as="div" delay={90} className="md:col-span-4 md:col-start-9 flex flex-col gap-6">
           <div className="border-t border-black/10 pt-4">
             <div className="font-body font-semibold text-[10.5px] tracking-[.12em] uppercase text-black/45 mb-2">
               Téléphone
@@ -53,7 +54,7 @@ export default function ContactPage() {
             </div>
             <div className="font-body text-sm leading-relaxed text-black/75">{companyInfo.address}</div>
           </div>
-        </div>
+        </Reveal>
       </div>
 
       <FormStates />

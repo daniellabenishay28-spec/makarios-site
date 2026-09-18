@@ -42,6 +42,21 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+
+    /*
+     * Filet de sécurité pour les reveal au scroll (components/motion/Reveal.tsx).
+     * La règle ci-dessus accélère déjà les transitions à ~0, mais l'état de
+     * départ (opacity:0, translateY(...)) reste posé en style inline tant que
+     * le JS n'a pas tourné — cette règle, calquée mais !important, force
+     * l'état final visible dès le tout premier paint, avant même
+     * l'hydratation : un utilisateur ayant demandé une réduction des
+     * animations ne doit jamais voir, même brièvement, un contenu caché en
+     * attendant l'IntersectionObserver.
+     */
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 
   body {
@@ -72,3 +87,63 @@
  *   sur fond noir : .85 .75 .65 .55 .5 .4 .32 .24
  *   sur fond blanc : .75 .62 .55 .45 .4 .35 .3 .28
  */
+
+/*
+ * Phase 2 — Motion & Interactions. Deux morceaux qui n'ont pas leur place
+ * dans un composant précis : une micro-animation d'apparition pour les
+ * éléments qui changent d'état en réaction à une action utilisateur (pas au
+ * scroll — voir Reveal pour ça), et l'interaction "dominance" des 4 pôles
+ * (Home + /solutions), qui doit affecter des éléments FRÈRES au survol, ce
+ * que Tailwind (group-hover ne cible que des descendants) ne permet pas
+ * sans un petit sélecteur :has() dédié.
+ */
+@layer components {
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Réservé aux apparitions déclenchées par un changement d'état React (succès/échec du formulaire, message d'erreur d'un champ) — jamais par le scroll. Durée alignée sur le palier "standard" (lib/motion.ts, DURATION.standard). */
+  .animate-fade-in-up {
+    animation: fade-in-up 400ms var(--ease-editorial) both;
+  }
+
+  /*
+   * Un pôle survolé/focus devient dominant, ses 3 frères s'estompent
+   * légèrement — jamais l'inverse (le pôle actif ne grossit pas, ne se
+   * transforme pas : brief section 8, "PAS de cartes qui sautent, PAS
+   * d'effet 3D"). `@media (hover: hover)` exclu volontairement le tactile :
+   * sur mobile le tap navigue directement, aucun état de survol "collant" à
+   * simuler.
+   *
+   * Le focus clavier n'atterrit pas forcément sur .pole-tile lui-même (sur
+   * Home et /solutions, c'est le lien "Explore"/le CTA à l'intérieur de la
+   * tuile qui est focusable, pas la tuile) — d'où `:focus-within` plutôt que
+   * `:focus-visible` directement sur .pole-tile, pour détecter "cette tuile
+   * contient un descendant actuellement focus". Attention : `:has()` ne peut
+   * pas prendre un autre `:has()` en argument (interdit par la spec
+   * Selectors — risque de récursion), donc `:has(.pole-tile:has(:focus-visible))`
+   * est invalide et fait silencieusement échouer TOUTE la règle au moment du
+   * build (aucune erreur de compilation, juste une règle absente du CSS
+   * final) — `:focus-within` est un pseudo-classe simple, pas une
+   * composition de `:has()`, donc valide comme argument de `:has()`.
+   */
+  .pole-grid .pole-tile {
+    transition:
+      opacity 400ms var(--ease-editorial),
+      transform 400ms var(--ease-editorial);
+  }
+
+  @media (hover: hover) {
+    .pole-grid:has(.pole-tile:hover) .pole-tile:not(:hover),
+    .pole-grid:has(.pole-tile:focus-within) .pole-tile:not(:focus-within) {
+      opacity: 0.5;
+    }
+  }
+}

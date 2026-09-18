@@ -15,7 +15,10 @@ export function CategorySection({ category }: CategorySectionProps) {
       )}
       <ul className="flex flex-col gap-2.5">
         {category.items.map((item) => (
-          <li key={item} className="font-body text-sm leading-relaxed text-white/75">
+          <li
+            key={item}
+            className="font-body text-sm leading-relaxed text-white/75 transition-[color,transform] duration-200 ease-editorial motion-reduce:transition-none hover:text-white/95 hover:translate-x-0.5"
+          >
             {item}
           </li>
         ))}

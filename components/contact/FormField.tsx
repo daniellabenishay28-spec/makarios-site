@@ -48,7 +48,7 @@ export function FormField({
     onFocus: () => setFocused(true),
     onBlur: () => setFocused(false),
     onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange(e.target.value),
-    className: `w-full bg-transparent font-body text-[15px] text-black placeholder:text-black/30 pb-2.5 border-b outline-none ${borderClass}`,
+    className: `w-full bg-transparent font-body text-[15px] text-black placeholder:text-black/30 pb-2.5 border-b outline-none transition-colors duration-200 ease-editorial motion-reduce:transition-none ${borderClass}`,
   };
 
   return (
@@ -64,7 +64,11 @@ export function FormField({
       ) : (
         <input type={type} {...sharedProps} />
       )}
-      {error && <div className="font-body text-[11.5px] text-error mt-2">{error}</div>}
+      {error && (
+        <div className="font-body text-[11.5px] text-error mt-2 animate-fade-in-up motion-reduce:animate-none">
+          {error}
+        </div>
+      )}
     </div>
   );
 }

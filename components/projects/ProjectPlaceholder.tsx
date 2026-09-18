@@ -1,5 +1,6 @@
 import { projects } from "@/content/projects";
 import { projectsPlaceholder } from "@/content/placeholders";
+import { Reveal } from "@/components/motion/Reveal";
 
 /**
  * Carte témoin "Problème → Solution → Résultat", fond blanc (rupture,
@@ -18,7 +19,7 @@ export function ProjectPlaceholder() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+    <Reveal as="div" className="grid grid-cols-1 md:grid-cols-12 gap-6">
       <div className="md:col-span-7 border border-black/14 p-8 md:p-10 bg-white text-black">
         <div className="font-body font-semibold text-xs tracking-[.14em] uppercase text-green mb-6">
           {projectsPlaceholder.poleTag}
@@ -55,6 +56,6 @@ export function ProjectPlaceholder() {
       <div className="md:col-span-4 md:col-start-9 flex items-center">
         <p className="font-body text-sm leading-relaxed text-black/55">{projectsPlaceholder.legend}</p>
       </div>
-    </div>
+    </Reveal>
   );
 }

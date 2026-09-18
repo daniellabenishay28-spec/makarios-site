@@ -47,13 +47,19 @@ export function ContactForm({ pole }: { pole?: string }) {
   }
 
   if (status === "success") {
-    return <p className="font-body text-base text-black/75 max-w-md">{formStates.success.message}</p>;
+    return (
+      <p className="font-body text-base text-black/75 max-w-md animate-fade-in-up motion-reduce:animate-none">
+        {formStates.success.message}
+      </p>
+    );
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-9 max-w-xl">
       {status === "failure" && globalError && (
-        <div className="font-body text-sm text-black/75">{globalError}</div>
+        <div className="font-body text-sm text-black/75 animate-fade-in-up motion-reduce:animate-none">
+          {globalError}
+        </div>
       )}
 
       <FormField
@@ -91,7 +97,7 @@ export function ContactForm({ pole }: { pole?: string }) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="bg-black text-white font-body font-medium text-sm px-8 py-4 w-fit disabled:opacity-60"
+        className="bg-black text-white font-body font-medium text-sm px-8 py-4 w-fit transition-opacity duration-200 ease-editorial motion-reduce:transition-none disabled:opacity-60"
       >
         {status === "submitting" ? formStates.submitting.message : submitButtonLabel}
       </button>

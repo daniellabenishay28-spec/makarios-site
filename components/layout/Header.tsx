@@ -3,6 +3,7 @@ import Image from "next/image";
 import { contactCta } from "@/content/nav";
 import { Nav } from "@/components/layout/Nav";
 import { withBasePath } from "@/lib/basePath";
+import { Reveal } from "@/components/motion/Reveal";
 
 interface HeaderProps {
   /**
@@ -23,39 +24,50 @@ interface HeaderProps {
  * styles/tokens.css --breakpoint-md) jusqu'au desktop. Positionné en
  * absolute + fond transparent, comme dans les 26 maquettes V4, pour se
  * superposer au hero de la page plutôt que d'imposer son propre fond.
+ *
+ * Phase 2 (Motion) : le header est en `position: absolute` (non `sticky`),
+ * un choix de design verrouillé — il défile avec le hero plutôt que de
+ * rester épinglé à l'écran. Un changement d'état au scroll (fond/opacité)
+ * n'aurait donc aucun effet visible utile et changerait un comportement déjà
+ * validé : on se limite ici à une apparition très brève et discrète au
+ * chargement de la page (fondu + très léger déplacement), pour que le header
+ * ne "saute" pas à l'écran mais reste immédiatement lisible et utilisable —
+ * aucun délai ne bloque jamais son usage.
  */
 export function Header({ variant = "light" }: HeaderProps) {
   const isDark = variant === "dark";
   return (
     <header
-      className={`hidden md:flex absolute top-0 inset-x-0 z-20 h-[88px] items-center justify-between px-20 ${
+      className={`hidden md:block absolute top-0 inset-x-0 z-20 h-[88px] px-20 ${
         isDark ? "text-black" : "text-white"
       }`}
     >
-      <Link href="/" className="flex items-center">
-        {isDark ? (
-          <Image
-            src={withBasePath("/images/logo-dark.png")}
-            alt="Makarios Corporation"
-            width={133}
-            height={22}
-            priority
-          />
-        ) : (
-          <span className="font-display font-bold text-[13px] tracking-[.12em]">
-            MAKARIOS <span className="font-normal text-white/60">CORPORATION</span>
-          </span>
-        )}
-      </Link>
+      <Reveal as="div" duration={300} distance={8} className="flex items-center justify-between h-full">
+        <Link href="/" className="flex items-center">
+          {isDark ? (
+            <Image
+              src={withBasePath("/images/logo-dark.png")}
+              alt="Makarios Corporation"
+              width={133}
+              height={22}
+              priority
+            />
+          ) : (
+            <span className="font-display font-bold text-[13px] tracking-[.12em]">
+              MAKARIOS <span className="font-normal text-white/60">CORPORATION</span>
+            </span>
+          )}
+        </Link>
 
-      <Nav variant={variant} />
+        <Nav variant={variant} />
 
-      <Link
-        href={contactCta.href}
-        className="font-body font-medium text-[12.5px] border-b border-green pb-[3px] transition-opacity hover:opacity-72"
-      >
-        {contactCta.label}
-      </Link>
+        <Link
+          href={contactCta.href}
+          className="font-body font-medium text-[12.5px] border-b border-green pb-[3px] transition-opacity hover:opacity-72"
+        >
+          {contactCta.label}
+        </Link>
+      </Reveal>
     </header>
   );
 }

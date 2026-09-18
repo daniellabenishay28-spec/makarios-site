@@ -59,6 +59,17 @@
   --breakpoint-*: initial;
   --breakpoint-md: 48rem; /* 768px — début de la zone intermédiaire */
   --breakpoint-desktop: 75rem; /* 1200px — début du système desktop (grille 12 colonnes, réf. 1440px) */
+
+  /*
+   * Motion (Phase 2) : une seule courbe d'easing pour toutes les transitions
+   * et révélations du site — décélération franche, sans rebond, cohérente
+   * avec le positionnement corporate/éditorial/premium. Génère l'utilitaire
+   * Tailwind `ease-editorial`. Les durées, elles, utilisent directement les
+   * utilitaires `duration-*` de Tailwind (accepte toute valeur en ms) sur 3
+   * paliers fixes : 200 (micro), 400 (standard), 650 (révélation) — voir
+   * lib/motion.ts (DURATION), source unique de vérité côté JS.
+   */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {

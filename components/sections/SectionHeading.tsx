@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Reveal } from "@/components/motion/Reveal";
 
 interface SectionHeadingProps {
   /** Ex. "04 — Why Makarios?" — numéro + nom de rubrique, repris tel quel des maquettes V4. */
@@ -41,28 +42,33 @@ export function SectionHeading({
 
   return (
     <div className={className}>
-      <div
+      <Reveal
+        as="div"
         className={`font-body font-semibold text-[11.5px] tracking-[.16em] uppercase mb-5 ${
           isDark ? "text-black/50" : "text-white/55"
         }`}
       >
         {eyebrow}
-      </div>
-      <div
+      </Reveal>
+      <Reveal
+        as="div"
+        delay={90}
         className={`font-display font-bold text-[32px] md:text-[40px] leading-[1.2] ${
           isDark ? "text-black" : "text-white"
         }`}
       >
         {titleNodes}
-      </div>
+      </Reveal>
       {subtitle && (
-        <div
+        <Reveal
+          as="div"
+          delay={180}
           className={`font-body text-base leading-relaxed mt-5 max-w-xl ${
             isDark ? "text-black/62" : "text-white/75"
           }`}
         >
           {subtitle}
-        </div>
+        </Reveal>
       )}
     </div>
   );

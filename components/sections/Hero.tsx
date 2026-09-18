@@ -1,6 +1,7 @@
-import Image from "next/image";
 import { missingHeroVisual } from "@/content/placeholders";
 import { withBasePath } from "@/lib/basePath";
+import { ParallaxImage } from "@/components/motion/ParallaxImage";
+import { Reveal } from "@/components/motion/Reveal";
 
 interface HeroProps {
   /** pole-photo = hero en photo plein cadre ; pole-editorial = pas de photo, chiffre en filigrane (ghost-num). Voir content/poles.ts. */
@@ -21,6 +22,10 @@ interface HeroProps {
  * réelle n'est disponible pour un pôle "pole-photo", affiche le rappel
  * "Visuel à produire" plutôt qu'une image fabriquée — jamais de
  * substitut généré (plan technique, section H).
+ *
+ * Phase 2 (Motion) : eyebrow → titre → sous-titre → intro apparaissent avec
+ * un léger décalage entre eux, et la photo (heroType "pole-photo") a un
+ * mouvement de profondeur très subtil au scroll — voir ParallaxImage.
  */
 export function Hero({ heroType, image, number, eyebrow, headline, subheadline, intro }: HeroProps) {
   return (
@@ -28,13 +33,7 @@ export function Hero({ heroType, image, number, eyebrow, headline, subheadline, 
       {heroType === "pole-photo" && (
         <>
           {image ? (
-            <Image
-              src={withBasePath(image.src)}
-              alt={image.alt}
-              fill
-              priority
-              className="object-cover opacity-70"
-            />
+            <ParallaxImage src={withBasePath(image.src)} alt={image.alt} priority className="opacity-70" />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-black">
               <span className="font-body italic text-sm text-white/35">{missingHeroVisual}</span>
@@ -54,19 +53,32 @@ export function Hero({ heroType, image, number, eyebrow, headline, subheadline, 
       )}
 
       <div className="relative z-10 px-6 md:px-20 max-w-3xl">
-        <div className="font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-white/55 mb-5">
+        <Reveal
+          as="div"
+          className="font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-white/55 mb-5"
+        >
           {eyebrow}
-        </div>
-        <h1 className="font-display font-bold text-[32px] md:text-[44px] leading-[1.15] text-white">
+        </Reveal>
+        <Reveal
+          as="h1"
+          delay={90}
+          className="font-display font-bold text-[32px] md:text-[44px] leading-[1.15] text-white"
+        >
           {headline}
-        </h1>
+        </Reveal>
         {subheadline && (
-          <div className="font-body text-base md:text-lg text-white/75 mt-4">{subheadline}</div>
+          <Reveal as="div" delay={180} className="font-body text-base md:text-lg text-white/75 mt-4">
+            {subheadline}
+          </Reveal>
         )}
         {intro && (
-          <p className="font-body text-sm md:text-base leading-relaxed text-white/70 mt-5 max-w-xl">
+          <Reveal
+            as="p"
+            delay={270}
+            className="font-body text-sm md:text-base leading-relaxed text-white/70 mt-5 max-w-xl"
+          >
             {intro}
-          </p>
+          </Reveal>
         )}
       </div>
     </section>

@@ -1,16 +1,22 @@
 import { whyMakariosArguments } from "@/content/whyMakarios";
+import { Reveal } from "@/components/motion/Reveal";
 
 /**
  * Page Why Makarios — manifeste vertical compact (Option B, validée par
  * Makarios, cf. verrouillage-contenu §05). Séquence continue, sans pause
  * plein écran par argument.
+ *
+ * Phase 2 (Motion) : chaque argument se révèle à son propre passage dans le
+ * viewport — une lecture plus "travaillée" du manifeste sans jamais gêner la
+ * lecture (brief section 12 : "ne doit pas nuire à la lecture").
  */
 export function Manifesto() {
   return (
     <div className="flex flex-col max-w-3xl">
       {whyMakariosArguments.map((arg, i) => (
-        <div
+        <Reveal
           key={arg.number}
+          as="div"
           className={`py-10 md:py-14 border-t border-white/14 ${
             i === whyMakariosArguments.length - 1 ? "border-b" : ""
           }`}
@@ -22,7 +28,7 @@ export function Manifesto() {
           <div className="font-body text-base md:text-[16.5px] leading-relaxed text-white/65 mt-3.5 max-w-xl">
             {arg.phrase}
           </div>
-        </div>
+        </Reveal>
       ))}
     </div>
   );
