@@ -36,17 +36,13 @@ export function HeaderMobile({ variant = "light" }: HeaderMobileProps) {
       className={`md:hidden absolute top-0 inset-x-0 z-20 h-16 flex items-center justify-between px-6 ${textColor}`}
     >
       <Link href="/" className="flex items-center">
-        {isDark ? (
-          <Image
-            src={withBasePath("/images/logo-dark.png")}
-            alt="Makarios Corporation"
-            width={109}
-            height={18}
-            priority
-          />
-        ) : (
-          <span className="font-display font-bold text-xs tracking-[.1em]">MAKARIOS</span>
-        )}
+        <Image
+          src={withBasePath(isDark ? "/images/logo-dark.png" : "/images/logo-white.png")}
+          alt="Makarios Corporation"
+          width={109}
+          height={18}
+          priority
+        />
       </Link>
 
       <div className="flex items-center gap-4">
