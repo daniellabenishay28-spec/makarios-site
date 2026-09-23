@@ -46,18 +46,18 @@ export default function ProjectsPage() {
         </Reveal>
       </div>
 
-      <div className="px-6 md:px-20 pb-20 md:pb-28">
+      <div className="border-t border-white/10 px-6 md:px-20 py-14 md:py-16 flex flex-col gap-10 md:gap-12">
         <ProjectPlaceholder />
-      </div>
 
-      <div className="border-t border-white/10 px-6 md:px-20 py-16 md:py-20 flex flex-col gap-8">
-        <Reveal as="p" className="font-body italic text-lg text-white/62 max-w-xl">
-          {projectsPlaceholder.editorialNote}
-        </Reveal>
-        <Reveal as="div" delay={90} className="flex flex-col md:flex-row gap-4 md:gap-10">
-          <Cta {...ctas.discoverMethod} />
-          <Cta {...ctas.letsTalk} tone="muted" />
-        </Reveal>
+        <div className="flex flex-col gap-8">
+          <Reveal as="p" className="font-body italic text-lg text-white/62 max-w-xl">
+            {projectsPlaceholder.editorialNote}
+          </Reveal>
+          <Reveal as="div" delay={90} className="flex flex-col md:flex-row gap-4 md:gap-10">
+            <Cta {...ctas.discoverMethod} />
+            <Cta {...ctas.letsTalk} tone="muted" />
+          </Reveal>
+        </div>
       </div>
     </div>
   );
