@@ -11,8 +11,15 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="px-6 md:px-20 py-28 md:py-32 flex flex-col gap-16">
-      <div>
+    <div className="flex flex-col">
+      <div className="relative px-6 md:px-20 pt-32 md:pt-44 pb-16 md:pb-20 overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute -right-6 -top-6 font-display font-extrabold text-[220px] md:text-[340px] leading-none text-white/[.035] select-none pointer-events-none"
+        >
+          06
+        </div>
+        <div aria-hidden className="w-8 h-px bg-green mb-6" />
         <Reveal
           as="div"
           className="font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-white/55 mb-5"
@@ -22,7 +29,7 @@ export default function ProjectsPage() {
         <Reveal
           as="h1"
           delay={90}
-          className="font-display font-bold text-3xl md:text-[46px] leading-tight text-white mb-6"
+          className="font-display font-bold text-3xl md:text-[46px] leading-tight text-white mb-7"
         >
           PROJECTS / PORTFOLIO
         </Reveal>
@@ -39,9 +46,11 @@ export default function ProjectsPage() {
         </Reveal>
       </div>
 
-      <ProjectPlaceholder />
+      <div className="px-6 md:px-20 pb-20 md:pb-28">
+        <ProjectPlaceholder />
+      </div>
 
-      <div className="border-t border-white/10 pt-14 md:pt-16 flex flex-col gap-8">
+      <div className="border-t border-white/10 px-6 md:px-20 py-16 md:py-20 flex flex-col gap-8">
         <Reveal as="p" className="font-body italic text-lg text-white/62 max-w-xl">
           {projectsPlaceholder.editorialNote}
         </Reveal>

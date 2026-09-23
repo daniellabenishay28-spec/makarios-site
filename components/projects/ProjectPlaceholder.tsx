@@ -8,6 +8,11 @@ import { Reveal } from "@/components/motion/Reveal";
  * reste vide — ce qui est le cas tant que Makarios n'a pas fourni de
  * projet réel, cf. verrouillage-contenu §04 — affiche le gabarit
  * placeholder, jamais un faux client/résultat.
+ *
+ * Refonte (structure "portfolio" premium) : la carte témoin est complétée
+ * par deux emplacements vides (bordure pointillée, sans aucun texte, aria-
+ * hidden) pour donner à voir une vraie grille de portfolio "prête à
+ * recevoir" — aucun contenu inventé, juste une structure visuelle.
  */
 export function ProjectPlaceholder() {
   if (projects.length > 0) {
@@ -19,8 +24,8 @@ export function ProjectPlaceholder() {
   }
 
   return (
-    <Reveal as="div" className="grid grid-cols-1 md:grid-cols-12 gap-6">
-      <div className="md:col-span-7 border border-black/14 p-8 md:p-10 bg-white text-black">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <Reveal as="div" className="md:col-span-8 border border-black/14 p-8 md:p-10 bg-white text-black">
         <div className="font-body font-semibold text-xs tracking-[.14em] uppercase text-green mb-6">
           {projectsPlaceholder.poleTag}
         </div>
@@ -51,11 +56,19 @@ export function ProjectPlaceholder() {
         <div className="font-body italic text-sm leading-relaxed text-black/40 mt-7 border-t border-black/10 pt-5">
           {projectsPlaceholder.cardNote}
         </div>
-      </div>
+      </Reveal>
 
-      <div className="md:col-span-4 md:col-start-9 flex items-center">
-        <p className="font-body text-sm leading-relaxed text-black/55">{projectsPlaceholder.legend}</p>
-      </div>
-    </Reveal>
+      <Reveal as="div" delay={90} className="md:col-span-4 flex items-center">
+        <p className="font-body text-sm leading-relaxed text-white/60">{projectsPlaceholder.legend}</p>
+      </Reveal>
+
+      {[0, 1, 2].map((i) => (
+        <div
+          key={i}
+          aria-hidden
+          className="hidden md:block md:col-span-4 min-h-[130px] border border-dashed border-white/15"
+        />
+      ))}
+    </div>
   );
 }

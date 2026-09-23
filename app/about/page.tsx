@@ -36,18 +36,25 @@ export default function AboutPage() {
   return (
     <>
       {/* ============ SECTION 1 — OUVERTURE (QUI SOMMES-NOUS) ============ */}
-      <section className="bg-black px-6 md:px-20 py-20 md:py-28 flex flex-col">
+      <section className="relative bg-black px-6 md:px-20 pt-32 md:pt-44 pb-20 md:pb-28 overflow-hidden flex flex-col">
+        <div
+          aria-hidden
+          className="absolute -right-6 top-1/2 -translate-y-1/2 font-display font-extrabold text-[260px] md:text-[380px] leading-none text-white/[.035] select-none pointer-events-none"
+        >
+          02
+        </div>
+        <div aria-hidden className="w-8 h-px bg-green mb-6" />
         <Reveal
           as="span"
           className="font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-white/55 mb-6"
         >
           {aboutIntro.eyebrow}
         </Reveal>
-        <div className="max-w-2xl">
+        <div className="max-w-2xl relative z-10">
           <Reveal
             as="h1"
             delay={90}
-            className="font-display font-bold text-[32px] md:text-[40px] leading-[1.2] text-white"
+            className="font-display font-bold text-[34px] md:text-[46px] leading-[1.18] text-white"
           >
             <IntroHeadline />
           </Reveal>
@@ -71,7 +78,7 @@ export default function AboutPage() {
           <Reveal
             as="p"
             delay={390}
-            className="font-body font-semibold text-sm md:text-[15px] leading-relaxed text-white mt-3.5 max-w-xl"
+            className="font-body font-semibold text-sm md:text-[15px] leading-relaxed text-white mt-3.5 max-w-xl border-l-2 border-green pl-5"
           >
             {aboutDifferentiation[1]}
           </Reveal>
@@ -79,37 +86,41 @@ export default function AboutPage() {
       </section>
 
       {/* ============ SECTION 2 — ÉCOSYSTÈME ============ */}
-      <section className="bg-black px-6 md:px-20 py-16 md:py-22 flex flex-col gap-12 md:gap-16">
-        <Reveal as="p" className="font-body text-base leading-relaxed text-white/72 max-w-2xl">
+      <section className="bg-black border-t border-white/10 px-6 md:px-20 py-16 md:py-24 flex flex-col gap-12 md:gap-16">
+        <Reveal as="p" className="font-body text-base md:text-lg leading-relaxed text-white/72 max-w-2xl">
           {ecosystemIntro}
         </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {ecosystem.map((entry, i) => (
-            <Reveal
-              key={entry.name}
-              as="div"
-              delay={i * 90}
-              className="md:border-l md:border-green/50 md:pl-5"
-            >
-              <div className="font-body font-semibold text-[11px] tracking-[.1em] uppercase text-green">
-                {entry.label}
+            <Reveal key={entry.name} as="div" delay={i * 90} className="h-full">
+              <div className="h-full border border-white/12 p-6 md:p-7 flex flex-col gap-3 transition-colors duration-200 ease-editorial motion-reduce:transition-none hover:border-white/25">
+                <div aria-hidden className="w-6 h-px bg-green" />
+                <div className="font-body font-semibold text-[11px] tracking-[.1em] uppercase text-green">
+                  {entry.label}
+                </div>
+                <div className="font-display font-semibold text-xl text-white">{entry.name}</div>
               </div>
-              <div className="font-display font-semibold text-xl text-white mt-2.5">{entry.name}</div>
             </Reveal>
           ))}
         </div>
       </section>
 
       {/* ============ SECTION 3 — NOS VALEURS ============ */}
-      <section className="bg-white text-black px-6 md:px-20 py-16 md:py-24">
+      <section className="bg-white text-black px-6 md:px-20 py-16 md:py-28">
+        <Reveal as="span" className="font-body font-semibold text-xs tracking-[.16em] uppercase text-black/45 mb-10 block">
+          Nos Valeurs
+        </Reveal>
         <div className="flex flex-col max-w-3xl mx-auto md:mx-0 md:ml-[8.33%]">
           {values.map((value, i) => (
             <Reveal
               key={value.name}
               as="div"
               delay={i * 70}
-              className="border-t last:border-b border-black/12 py-5 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8"
+              className="group border-t last:border-b border-black/12 py-6 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-10 transition-colors duration-200 ease-editorial motion-reduce:transition-none hover:bg-black/[.02]"
             >
+              <div className="font-body font-semibold text-black/30 w-10 text-sm">
+                {String(i + 1).padStart(2, "0")}
+              </div>
               <div className="font-display font-semibold text-green w-44 text-lg">{value.name}</div>
               <div className="font-body text-sm text-black/65">{value.phrase}</div>
             </Reveal>
@@ -118,8 +129,9 @@ export default function AboutPage() {
       </section>
 
       {/* ============ SECTION 4 — VISION (CLÔTURE) ============ */}
-      <section className="bg-black px-6 py-16 md:py-24 flex flex-col items-center justify-center gap-6 text-center">
-        <Reveal as="h2" className="font-display font-bold text-3xl md:text-[38px] text-white max-w-3xl">
+      <section className="bg-black px-6 py-20 md:py-28 flex flex-col items-center justify-center gap-7 text-center">
+        <span aria-hidden className="w-10 h-px bg-green" />
+        <Reveal as="h2" className="font-display font-bold text-3xl md:text-[42px] text-white max-w-3xl">
           <VisionHeadline />
         </Reveal>
         <Reveal

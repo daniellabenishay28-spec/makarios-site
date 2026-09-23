@@ -50,12 +50,13 @@ export default function ApproachPage() {
       </section>
 
       {/* ============ SECTION 3 — THE MAKARIOS METHOD (5 ÉTAPES) ============ */}
-      <section className="bg-black px-6 md:px-20 py-20 md:py-24">
+      <section className="bg-black px-6 md:px-20 py-20 md:py-28">
         <ApproachSteps />
       </section>
 
       {/* ============ SECTION 4 — CTA DE SORTIE ============ */}
-      <section className="bg-black border-t border-white/10 px-6 md:px-20 py-14 md:py-16">
+      <section className="bg-black border-t border-white/10 px-6 md:px-20 py-16 md:py-20 flex flex-col gap-7">
+        <span aria-hidden className="w-8 h-px bg-green" />
         <Reveal as="div" className="flex flex-col md:flex-row gap-5 md:gap-10 md:items-center">
           <Cta {...ctas.viewProjects} />
           <Cta {...ctas.letsTalk} tone="muted" />
