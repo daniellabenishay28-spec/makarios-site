@@ -7,12 +7,31 @@
  * le nom de l'étape.
  */
 
-/** Les 4 mots de la signature, dans l'ordre. Le séparateur entre chaque mot est un micro-accent vert — voir styles/tokens.css. */
+/**
+ * Les 4 mots de la signature courte, dans l'ordre — utilisée uniquement
+ * dans le teaser "The Makarios Method" de la page Home (app/page.tsx,
+ * section 7). Le séparateur entre chaque mot est un micro-accent vert —
+ * voir styles/tokens.css.
+ */
 export const brandSignature: string[] = [
   "COMPRENDRE.",
   "CONCEVOIR.",
   "CONNECTER.",
   "EXÉCUTER.",
+];
+
+/**
+ * Les 5 mots de la signature complète, alignés sur les 5 étapes de
+ * "The Makarios Method" (voir approachSteps ci-dessous) — utilisée
+ * uniquement dans le hero de la page Approach (app/approach/page.tsx,
+ * section 1). Même logique de séparateur vert que brandSignature.
+ */
+export const approachHeroSignature: string[] = [
+  "COMPRENDRE.",
+  "CONCEVOIR.",
+  "CONNECTER.",
+  "CONCRÉTISER.",
+  "CROÎTRE.",
 ];
 
 /** Eyebrow de la section blanche de respiration, entre la signature et les 5 étapes. */

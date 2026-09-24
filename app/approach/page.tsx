@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Cta } from "@/components/cta/Cta";
 import { ApproachSteps } from "@/components/sections/ApproachSteps";
-import { brandSignature, methodEyebrow } from "@/content/approachSteps";
+import { approachHeroSignature, methodEyebrow } from "@/content/approachSteps";
 import { ctas } from "@/content/ctas";
 import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Approach",
-  description: "The Makarios Method — Comprendre. Concevoir. Connecter. Exécuter.",
+  description: "The Makarios Method — Comprendre. Concevoir. Connecter. Concrétiser. Croître.",
 };
 
 export default function ApproachPage() {
@@ -22,17 +22,17 @@ export default function ApproachPage() {
           05 — Our Approach
         </Reveal>
         <div className="flex flex-col items-center">
-          {brandSignature.map((word, i) => (
+          {approachHeroSignature.map((word, i) => (
             <div key={word} className="contents">
               <Reveal
                 as="span"
                 delay={i * 110}
-                className="font-display font-extrabold text-3xl md:text-[52px] leading-[1.3] tracking-wide text-white"
+                className="font-display font-extrabold text-[28px] md:text-[46px] leading-[1.25] tracking-wide text-white"
               >
                 {word}
               </Reveal>
-              {i < brandSignature.length - 1 && (
-                <span aria-hidden className="w-[26px] h-[2px] bg-green/70 my-3.5" />
+              {i < approachHeroSignature.length - 1 && (
+                <span aria-hidden className="w-[26px] h-[2px] bg-green/70 my-2.5 md:my-3" />
               )}
             </div>
           ))}
