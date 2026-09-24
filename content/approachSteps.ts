@@ -8,8 +8,9 @@
  */
 
 /**
- * Les 4 mots de la signature courte, dans l'ordre — utilisée uniquement
- * dans le teaser "The Makarios Method" de la page Home (app/page.tsx,
+ * Les 5 mots de la signature courte, alignés sur les 5 étapes de
+ * "The Makarios Method" — utilisée uniquement dans le teaser "Notre
+ * approche — The Makarios Method" de la page Home (app/page.tsx,
  * section 7). Le séparateur entre chaque mot est un micro-accent vert —
  * voir styles/tokens.css.
  */
@@ -17,7 +18,8 @@ export const brandSignature: string[] = [
   "COMPRENDRE.",
   "CONCEVOIR.",
   "CONNECTER.",
-  "EXÉCUTER.",
+  "CONCRÉTISER.",
+  "CROÎTRE.",
 ];
 
 /**

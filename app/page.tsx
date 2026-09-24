@@ -327,12 +327,12 @@ export default function HomePage() {
         <Reveal
           as="div"
           delay={90}
-          className="font-display font-bold text-2xl md:text-[38px] leading-[1.25] text-white max-w-4xl"
+          className="font-display font-bold text-2xl md:text-[38px] leading-[1.25] text-white max-w-4xl flex flex-wrap items-baseline gap-x-2 md:gap-x-4 gap-y-1"
         >
           {brandSignature.map((word, i) => (
-            <span key={word}>
+            <span key={word} className="inline-flex items-baseline">
               {word.replace(/\.$/, "")}
-              {i < brandSignature.length - 1 && <span className="text-green mx-2 md:mx-4">·</span>}
+              {i < brandSignature.length - 1 && <span className="text-green ml-2 md:ml-4">·</span>}
             </span>
           ))}
         </Reveal>
