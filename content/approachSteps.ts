@@ -45,12 +45,12 @@ export const approachSteps: ApproachStep[] = [
   },
   {
     number: "04",
-    name: "Execute — Exécuter",
+    name: "Execute — Concrétiser",
     description: "Nous transformons la stratégie en actions concrètes.",
   },
   {
     number: "05",
-    name: "Grow — Développer",
+    name: "Grow — Croître",
     description:
       "Nous mesurons les résultats et identifions les nouvelles opportunités.",
   },
