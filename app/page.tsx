@@ -6,7 +6,8 @@ import { poles } from "@/content/poles";
 import { whyMakariosArguments } from "@/content/whyMakarios";
 import { brandSignature, approachSteps, methodEyebrow } from "@/content/approachSteps";
 import { solutions } from "@/content/solutions";
-import { aboutIntro, aboutDifferentiation } from "@/content/about";
+import { aboutIntro, mission, vision } from "@/content/about";
+import { values } from "@/content/values";
 import { ctas } from "@/content/ctas";
 import { withBasePath } from "@/lib/basePath";
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
@@ -128,8 +129,66 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============ SECTION 2 — LES 4 PÔLES ============ */}
-      <section className="bg-black px-6 md:px-20 py-16 md:py-28 flex flex-col gap-10 md:gap-14">
+      {/* ============ SECTION 2 — ABOUT US (PRÉSENTATION) ============ */}
+      <section className="bg-black px-6 md:px-20 py-16 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 mb-10 md:mb-12">
+          <div className="md:col-span-4">
+            <Reveal as="span" className="font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-white/55">
+              {aboutIntro.eyebrow}
+            </Reveal>
+            <Reveal
+              as="div"
+              delay={90}
+              className="font-display font-bold text-3xl md:text-[38px] leading-[1.2] text-white mt-5"
+            >
+              <AboutTeaserHeadline />
+            </Reveal>
+          </div>
+          <div className="md:col-span-7 md:col-start-6 flex flex-col justify-center">
+            <Reveal as="p" delay={90} className="font-body text-base md:text-[17px] leading-relaxed text-white/72 max-w-xl">
+              {aboutIntro.paragraphs[0]}
+            </Reveal>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <Reveal as="div" delay={90} className="border border-white/12 p-6 md:p-7 flex flex-col gap-3">
+            <div aria-hidden className="w-6 h-px bg-green" />
+            <div className="font-body font-semibold text-[11px] tracking-[.1em] uppercase text-green">
+              Notre Vision
+            </div>
+            <p className="font-body text-sm leading-relaxed text-white/68">{vision.body}</p>
+          </Reveal>
+          <Reveal as="div" delay={150} className="border border-white/12 p-6 md:p-7 flex flex-col gap-3">
+            <div aria-hidden className="w-6 h-px bg-green" />
+            <div className="font-body font-semibold text-[11px] tracking-[.1em] uppercase text-green">
+              {mission.eyebrow}
+            </div>
+            <p className="font-body text-sm leading-relaxed text-white/68">{mission.body}</p>
+          </Reveal>
+          <Reveal as="div" delay={210} className="border border-white/12 p-6 md:p-7 flex flex-col gap-3">
+            <div aria-hidden className="w-6 h-px bg-green" />
+            <div className="font-body font-semibold text-[11px] tracking-[.1em] uppercase text-green">
+              Nos Valeurs
+            </div>
+            <div className="font-body text-sm leading-relaxed text-white/85 flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
+              {values.map((value, i) => (
+                <span key={value} className="inline-flex items-baseline">
+                  {value}
+                  {i < values.length - 1 && <span className="text-green ml-1.5">·</span>}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal as="div" delay={270} className="w-fit">
+          <Cta href={aboutCta.href} label={aboutCta.label} />
+        </Reveal>
+      </section>
+
+      {/* ============ SECTION 3 — LES 4 PÔLES ============ */}
+      <section className="bg-black border-t border-white/10 px-6 md:px-20 py-16 md:py-28 flex flex-col gap-10 md:gap-14">
         <div className="flex items-end justify-between gap-5">
           <div className="flex items-center gap-5">
             <span className="font-body font-semibold text-xs tracking-[.16em] uppercase text-white/55">
@@ -192,27 +251,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============ SECTION 3 — POSITIONNEMENT ============ */}
-      <section className="bg-white text-black px-6 md:px-20 py-16 md:py-0 md:min-h-[360px] flex items-center">
-        <div className="max-w-3xl grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-          <div aria-hidden className="hidden md:block md:col-span-1 w-px h-16 bg-black/25" />
-          <Reveal
-            as="p"
-            className="md:col-span-11 font-display font-semibold text-2xl md:text-[40px] leading-[1.22]"
-          >
-            {positioningStatement.text
-              .split(positioningStatement.accentWord)
-              .flatMap((part, i, arr) =>
-                i < arr.length - 1
-                  ? [part, <span key={i} className="text-green">{positioningStatement.accentWord}</span>]
-                  : [part]
-              )}
-          </Reveal>
-        </div>
-      </section>
-
       {/* ============ SECTION 4 — OUR SOLUTIONS ============ */}
-      <section className="bg-black px-6 md:px-20 py-16 md:py-24 flex flex-col gap-10 md:gap-14">
+      <section className="bg-black border-t border-white/10 px-6 md:px-20 py-16 md:py-24 flex flex-col gap-10 md:gap-14">
         <div className="flex items-end justify-between gap-5 flex-wrap">
           <div>
             <Reveal as="span" className="font-body font-semibold text-xs tracking-[.16em] uppercase text-white/55">
@@ -251,36 +291,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============ SECTION 5 — ABOUT (TEASER) ============ */}
-      <section className="bg-black border-t border-white/10 px-6 md:px-20 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
-          <div className="md:col-span-4">
-            <Reveal as="span" className="font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-white/55">
-              {aboutIntro.eyebrow}
-            </Reveal>
-            <Reveal
-              as="div"
-              delay={90}
-              className="font-display font-bold text-3xl md:text-[38px] leading-[1.2] text-white mt-5"
-            >
-              <AboutTeaserHeadline />
-            </Reveal>
-          </div>
-          <div className="md:col-span-7 md:col-start-6 flex flex-col gap-6 justify-center">
-            <Reveal as="p" delay={90} className="font-body text-base md:text-[17px] leading-relaxed text-white/72 max-w-xl">
-              {aboutIntro.body}
-            </Reveal>
-            <Reveal
-              as="p"
-              delay={180}
-              className="font-body font-semibold text-base md:text-lg leading-relaxed text-white max-w-xl border-l-2 border-green pl-5"
-            >
-              {aboutDifferentiation[1]}
-            </Reveal>
-            <Reveal as="div" delay={270} className="w-fit mt-2">
-              <Cta href={aboutCta.href} label={aboutCta.label} />
-            </Reveal>
-          </div>
+      {/* ============ SECTION 5 — POSITIONNEMENT ============ */}
+      <section className="bg-white text-black px-6 md:px-20 py-16 md:py-0 md:min-h-[360px] flex items-center">
+        <div className="max-w-3xl grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div aria-hidden className="hidden md:block md:col-span-1 w-px h-16 bg-black/25" />
+          <Reveal
+            as="p"
+            className="md:col-span-11 font-display font-semibold text-2xl md:text-[40px] leading-[1.22]"
+          >
+            {positioningStatement.text
+              .split(positioningStatement.accentWord)
+              .flatMap((part, i, arr) =>
+                i < arr.length - 1
+                  ? [part, <span key={i} className="text-green">{positioningStatement.accentWord}</span>]
+                  : [part]
+              )}
+          </Reveal>
         </div>
       </section>
 
