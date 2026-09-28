@@ -51,6 +51,14 @@ export const ecosystem: EcosystemEntry[] = [
   { label: "Transporter & distribuer", name: "Mobilis Logistics" },
 ];
 
+
+export const mission = {
+  eyebrow: "Notre Mission",
+  headline: "Accompagner les entreprises et organisations.",
+  headlineAccent: "Accompagner",
+  body:
+    "Accompagner les entreprises et organisations dans l'amélioration de leur productivité grâce à des solutions intégrées combinant technologie, communication, expertise opérationnelle et innovation.",
+};
 export const vision = {
   headline: "Une référence africaine.",
   headlineAccent: "référence",

@@ -146,7 +146,7 @@ export default function HomePage() {
           </div>
           <div className="md:col-span-7 md:col-start-6 flex flex-col justify-center">
             <Reveal as="p" delay={90} className="font-body text-base md:text-[17px] leading-relaxed text-white/72 max-w-xl">
-              {aboutIntro.paragraphs[0]}
+              {aboutIntro.body}
             </Reveal>
           </div>
         </div>
@@ -173,8 +173,8 @@ export default function HomePage() {
             </div>
             <div className="font-body text-sm leading-relaxed text-white/85 flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
               {values.map((value, i) => (
-                <span key={value} className="inline-flex items-baseline">
-                  {value}
+                <span key={value.name} className="inline-flex items-baseline">
+                  {value.name}
                   {i < values.length - 1 && <span className="text-green ml-1.5">·</span>}
                 </span>
               ))}
