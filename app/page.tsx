@@ -146,7 +146,7 @@ export default function HomePage() {
           </div>
           <div className="md:col-span-7 md:col-start-6 flex flex-col justify-center">
             <Reveal as="p" delay={90} className="font-body text-base md:text-[17px] leading-relaxed text-white/72 max-w-xl">
-              {aboutIntro.body}
+              {aboutIntro.paragraphs[0]}
             </Reveal>
           </div>
         </div>

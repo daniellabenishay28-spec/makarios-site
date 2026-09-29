@@ -1,9 +1,13 @@
 /**
- * Page About — contenu officiel, verbatim de About-Desktop.dc.html /
- * About-Mobile.dc.html. Les 5 valeurs elles-mêmes vivent dans
- * content/values.ts (fichier prévu explicitement dans le plan technique) ;
- * ce fichier couvre le reste des sections officielles de la page : intro,
- * écosystème, vision.
+ * Page About — contenu officiel, verbatim du Company Profile Makarios
+ * (mise à jour du contenu institutionnel — remplace l'ancien texte issu de
+ * SITE_INTERNET_MAKARIOS.pdf). Les valeurs elles-mêmes vivent dans
+ * content/values.ts ; ce fichier couvre le reste des sections officielles
+ * de la page : présentation, mission, vision.
+ *
+ * L'ancienne section "Écosystème" (YoLink, YoPay, Supply Chain Management,
+ * Mobilis Logistics) a été entièrement retirée de la page About Us — ne
+ * jamais la réintroduire ici.
  */
 
 export const aboutIntro = {
@@ -11,59 +15,32 @@ export const aboutIntro = {
   headline: "Une entreprise multisectorielle, née à Kinshasa.",
   headlineAccent: "Kinshasa",
   subheadline: "Makarios Corporation Sarl.",
-  // Paragraphe officiel, verbatim de SITE_INTERNET_MAKARIOS.pdf, section
-  // « 02 — ABOUT US ». Remplace l'ancien texte (issu du Company Profile) —
-  // ne jamais reformuler, raccourcir, traduire ou changer la ponctuation.
-  body:
-    "MAKARIOS CORPORATION est une entreprise multisectorielle qui combine conseil, commerce, distribution, technologie et services opérationnels afin d'accompagner ses partenaires dans leur développement.",
+  /**
+   * "Présentation de l'entreprise" — 3 paragraphes officiels, verbatim du
+   * Company Profile. Ne jamais reformuler, raccourcir ou fusionner. La Home
+   * réutilise uniquement paragraphs[0] (déjà le plus concis des trois) pour
+   * son teaser condensé — un sous-ensemble verbatim, jamais une reformulation.
+   */
+  paragraphs: [
+    "Makarios Corporation SARL est une entreprise congolaise qui développe des solutions innovantes dans plusieurs secteurs stratégiques afin d'accompagner les entreprises, organisations et entrepreneurs dans leur croissance, leur transformation digitale et leur performance opérationnelle.",
+    "Fondée en République Démocratique du Congo, Makarios Corporation SARL a commencé ses activités principalement à Kinshasa avec l'ambition de devenir un partenaire de référence dans la création de solutions adaptées aux besoins du marché congolais et africain.",
+    "L'entreprise met à disposition une équipe d'experts capable d'offrir des services répondant aux standards internationaux dans les domaines du marketing, de la communication, du digital, de la logistique, de l'immobilier, du conseil et de l'agrobusiness.",
+  ],
 };
 
-/**
- * Les deux phrases de différenciation, verbatim de SITE_INTERNET_MAKARIOS.pdf
- * (même section que aboutIntro.body, juste après). Dans le PDF, la seconde
- * phrase est en gras — emphasis reprise ici, pas ajoutée. Ne jamais
- * reformuler ces phrases.
- */
-export const aboutDifferentiation = [
-  "Notre différence n'est pas simplement la diversité de nos activités.",
-  "Notre différence réside dans notre capacité à connecter ces expertises pour construire des solutions adaptées à chaque besoin.",
-];
-
-export const ecosystemIntro =
-  "Makarios construit un écosystème intégré permettant d'accompagner les entreprises de bout en bout.";
-
-export interface EcosystemEntry {
-  label: string;
-  name: string;
-}
-
-/**
- * Écosystème de marques (Company Profile p.04, diagramme). Seuls ces 4 noms
- * sont confirmés — les 4 autres sous-marques évoquées ailleurs (Mobilis
- * Immobilier, Mr PLAN, Transformation digitale & Software Development,
- * Delight Beverage & Food) ne sont pas vérifiables et ne doivent jamais
- * être ajoutées ici (voir content/placeholders.ts → pendingContent).
- */
-export const ecosystem: EcosystemEntry[] = [
-  { label: "Communiquer & acquérir", name: "YoLink" },
-  { label: "Payer & transacter", name: "YoPay" },
-  { label: "Approvisionner & optimiser", name: "Supply Chain Management" },
-  { label: "Transporter & distribuer", name: "Mobilis Logistics" },
-];
-
-
+/** "Notre Mission" — contenu officiel, verbatim du Company Profile Makarios. */
 export const mission = {
   eyebrow: "Notre Mission",
-  headline: "Accompagner les entreprises et organisations.",
-  headlineAccent: "Accompagner",
   body:
     "Accompagner les entreprises et organisations dans l'amélioration de leur productivité grâce à des solutions intégrées combinant technologie, communication, expertise opérationnelle et innovation.",
 };
+
+/** "Notre Vision" — contenu officiel, verbatim du Company Profile Makarios. */
 export const vision = {
   headline: "Une référence africaine.",
   headlineAccent: "référence",
   body:
-    "Construire une entreprise africaine de référence dans la conception et la mise en œuvre de solutions intégrées pour les entreprises, les institutions et les entrepreneurs.",
+    "Être une corporation innovante capable de créer des écosystèmes de solutions qui contribuent au développement des entreprises et à la transformation économique de la République Démocratique du Congo.",
   primaryCta: { label: "Discover our method →", href: "/approach" },
   secondaryCta: { label: "Nos solutions", href: "/solutions" },
 };
