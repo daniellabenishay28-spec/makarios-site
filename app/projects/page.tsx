@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cta } from "@/components/cta/Cta";
 import { ProjectPlaceholder } from "@/components/projects/ProjectPlaceholder";
+import { TrustedOrganizations } from "@/components/projects/TrustedOrganizations";
 import { projectsPlaceholder } from "@/content/placeholders";
 import { ctas } from "@/content/ctas";
 import { Reveal } from "@/components/motion/Reveal";
@@ -58,6 +59,10 @@ export default function ProjectsPage() {
             <Cta {...ctas.letsTalk} tone="muted" />
           </Reveal>
         </div>
+      </div>
+
+      <div className="border-t border-white/10 px-6 md:px-20 py-16 md:py-24">
+        <TrustedOrganizations />
       </div>
     </div>
   );
