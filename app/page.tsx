@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Cta } from "@/components/cta/Cta";
+import { PortfolioTeaser } from "@/components/home/PortfolioTeaser";
 import { poles } from "@/content/poles";
 import { whyMakariosArguments } from "@/content/whyMakarios";
 import { brandSignature, approachSteps, methodEyebrow } from "@/content/approachSteps";
@@ -376,6 +377,8 @@ export default function HomePage() {
           <Cta href={approachTeaser.cta.href} label={approachTeaser.cta.label} />
         </Reveal>
       </section>
+
+      <PortfolioTeaser />
 
       {/* ============ SECTION 9 — CONTACT (CLÔTURE) ============ */}
       <section className="bg-black px-6 py-20 md:py-0 md:min-h-[520px] flex flex-col items-center justify-center gap-7 text-center">

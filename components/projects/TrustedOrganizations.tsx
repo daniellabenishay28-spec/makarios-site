@@ -40,12 +40,7 @@ export function TrustedOrganizations() {
   return (
     <div className="flex flex-col">
       <div aria-hidden className="w-8 h-px bg-green mb-6" />
-      <Reveal
-        as="span"
-        className="font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-black/55 mb-5"
-      >
-        {trustedOrganizationsIntro.eyebrow}
-      </Reveal>
+
       <Reveal
         as="h2"
         delay={90}

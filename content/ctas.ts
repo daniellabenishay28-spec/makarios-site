@@ -9,6 +9,7 @@ export const ctas = {
   seeAllReasons: { label: "See all 5 reasons →", href: "/why-makarios" },
   letsTalk: { label: "Let’s talk →", href: "/contact" },
   viewProjects: { label: "View projects →", href: "/projects" },
+  viewPortfolio: { label: "View portfolio →", href: "/projects" },
   discussThisPole: (poleHref: string) => ({
     label: "Discuss this pole →",
     href: `/contact?pole=${encodeURIComponent(poleHref)}`,
