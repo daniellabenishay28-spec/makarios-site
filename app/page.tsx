@@ -19,7 +19,6 @@ import {
   positioningStatement,
   approachTeaser,
   whyMakariosTeaser,
-  projectsTeaser,
   contactTeaser,
 } from "@/content/home";
 
@@ -66,7 +65,6 @@ export default function HomePage() {
   const teaserArguments = whyMakariosArguments.filter((arg) =>
     (whyMakariosTeaser.argumentNumbers as readonly string[]).includes(arg.number)
   );
-  const projectsCta = splitCtaLabel(projectsTeaser.cta.label);
   const aboutCta = ctas.discover("/about");
 
   return (
@@ -376,51 +374,6 @@ export default function HomePage() {
 
         <Reveal as="div" delay={480} className="w-fit">
           <Cta href={approachTeaser.cta.href} label={approachTeaser.cta.label} />
-        </Reveal>
-      </section>
-
-      {/* ============ SECTION 8 — TEASER PROJECTS ============ */}
-      <section className="bg-white text-black px-6 md:px-20 py-16 md:py-0 md:min-h-[420px] flex flex-col justify-center gap-6">
-        <Reveal as="span" className="font-body font-semibold text-xs tracking-[.16em] uppercase text-black/50">
-          {projectsTeaser.eyebrow}
-        </Reveal>
-        <Reveal as="div" delay={90} className="font-display font-bold text-3xl md:text-[42px]">
-          {projectsTeaser.title.replace(projectsTeaser.titleAccent, "")}
-          <span className="text-green">{projectsTeaser.titleAccent}</span>
-        </Reveal>
-        <Reveal
-          as="div"
-          delay={150}
-          className="flex items-center gap-3 font-body font-semibold text-xs tracking-[.1em] uppercase text-black/55"
-        >
-          <span>Problème</span>
-          <span className="text-green">→</span>
-          <span>Solution</span>
-          <span className="text-green">→</span>
-          <span>Résultat</span>
-        </Reveal>
-        <Reveal
-          as="p"
-          delay={210}
-          className="font-body text-sm md:text-[15px] leading-relaxed text-black/60 max-w-xl"
-        >
-          {projectsTeaser.note}
-        </Reveal>
-        <Reveal as="div" delay={270} className="w-fit">
-          <Link
-            href={projectsTeaser.cta.href}
-            className="group/cta inline-flex items-center gap-1 font-body font-medium text-sm text-black hover:text-green focus-visible:text-green border-b border-green pb-1 transition-colors duration-200 ease-editorial motion-reduce:transition-none"
-          >
-            <span>{projectsCta.text}</span>
-            {projectsCta.arrow && (
-              <span
-                aria-hidden
-                className="inline-block transition-transform duration-200 ease-editorial motion-reduce:transition-none group-hover/cta:translate-x-1 group-focus-visible/cta:translate-x-1"
-              >
-                {projectsCta.arrow}
-              </span>
-            )}
-          </Link>
         </Reveal>
       </section>
 

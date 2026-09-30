@@ -42,16 +42,6 @@ export const whyMakariosTeaser = {
   cta: { label: "See all 5 reasons →", href: "/why-makarios" },
 };
 
-export const projectsTeaser = {
-  eyebrow: "Projects",
-  title: "PROJECTS / PORTFOLIO",
-  titleAccent: "PORTFOLIO",
-  /** Formulation propre à la Home — distincte de la note affichée sur /projects elle-même, chacune reprise verbatim de sa propre maquette. */
-  note:
-    "Nos études de cas sont en cours de constitution. Les projets, résultats et témoignages seront publiés ici après validation par Makarios.",
-  cta: { label: "View projects →", href: "/projects" },
-};
-
 export const contactTeaser = {
   headline: "Let's build something that grows.",
   headlineAccent: "grows",

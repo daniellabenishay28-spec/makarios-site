@@ -1,17 +1,30 @@
 /**
- * Page Projects/Portfolio — section "organisations qui nous ont fait
- * confiance". Contenu officiel fourni directement par Makarios (noms,
- * catégories et logos réels) : aucune organisation, catégorie ou logo
- * supplémentaire ne doit être ajouté ici sans nouvelle fourniture explicite
- * (même principe que content/projects.ts — voir sa note d'en-tête).
+ * Page Projects/Portfolio — section "Nos références" : organisations avec
+ * lesquelles Makarios a travaillé. Contenu officiel fourni directement par
+ * Makarios (noms, catégories et logos réels) : aucune organisation,
+ * catégorie ou logo supplémentaire ne doit être ajouté ici sans nouvelle
+ * fourniture explicite (même principe que content/projects.ts — voir sa
+ * note d'en-tête).
  *
- * Exactement 8 organisations réparties dans exactement 7 catégories.
+ * RÈGLE ABSOLUE SUR LES FICHIERS LOGO : chaque fichier référencé ici est
+ * utilisé strictement tel que fourni par l'organisation concernée — jamais
+ * détouré, recadré, recoloré ou rendu transparent. Le fond blanc de la
+ * section (cf. app/projects/page.tsx et TrustedOrganizations.tsx) est le
+ * fond du CONTENEUR de la section, pas celui des logos : si un fichier
+ * fourni a son propre arrière-plan (couleur, image), cet arrière-plan est
+ * conservé à l'identique et reste visible autour du logo.
+ *
+ * Exactement 8 organisations réparties dans exactement 5 catégories
+ * (regroupement validé par Makarios — les anciennes catégories
+ * "Assurances", "Mines et Ressources Naturelles — Secteur Public" et
+ * "Administration Publique et Finances" ont été fusionnées en une seule
+ * catégorie "Secteur public").
  */
 
 export const trustedOrganizationsIntro = {
   eyebrow: "Ils nous accompagnent",
-  /** Titre prioritaire demandé. */
-  title: "Des organisations qui nous ont fait confiance.",
+  /** Titre prioritaire demandé — page /projects désormais dédiée aux références de Makarios. */
+  title: "Nos références",
 };
 
 export interface TrustedOrganization {
@@ -27,11 +40,14 @@ export interface TrustedOrganization {
     height: number;
   };
   /**
-   * Fond nécessaire derrière le logo pour rester lisible, déterminé par le
-   * fichier fourni lui-même (jamais une recoloration du logo) :
-   * "light" = logo à fond blanc opaque → plaque blanche ; "dark" = logo déjà
-   * à fond noir (#000000, identique au fond du site) → aucune plaque,
-   * s'intègre directement au fond de la page.
+   * Champ historique, non utilisé par le rendu actuel (la section "Nos
+   * références" utilise un fond blanc continu, sans plaque individuelle
+   * derrière les logos — cf. TrustedOrganizations.tsx). Conservé à titre
+   * documentaire sur l'origine du fichier : "light" = fichier fourni tel
+   * quel par l'organisation, avec son propre arrière-plan (opaque ou
+   * transparent, quelle qu'en soit la couleur) ; ne reflète jamais un
+   * traitement appliqué par Makarios — aucun fichier logo de cette liste
+   * n'est détouré, recadré ou recoloré.
    */
   plate: "light" | "dark";
 }
@@ -43,18 +59,18 @@ export interface TrustedOrganizationCategory {
 
 export const trustedOrganizations: TrustedOrganizationCategory[] = [
   {
-    category: "Publicité, Communication et Audiovisuel",
+    category: "Publicité, Communication & Audiovisuel",
     organizations: [
-      {
-        name: "DISPROMALT",
-        logo: { src: "/images/partners/dispromalt.jpg", alt: "DISPROMALT", width: 1280, height: 312 },
-        plate: "light",
-      },
       {
         name: "DI-WAY",
         legalName: "Studio Diway",
         logo: { src: "/images/partners/di-way.jpg", alt: "DI-WAY — Studio Diway", width: 512, height: 512 },
-        plate: "dark",
+        plate: "light",
+      },
+      {
+        name: "DISPROMALT",
+        logo: { src: "/images/partners/dispromalt.jpg", alt: "DISPROMALT", width: 1280, height: 312 },
+        plate: "light",
       },
     ],
   },
@@ -101,7 +117,7 @@ export const trustedOrganizations: TrustedOrganizationCategory[] = [
     ],
   },
   {
-    category: "Assurances",
+    category: "Secteur public",
     organizations: [
       {
         name: "SONAS",
@@ -110,15 +126,21 @@ export const trustedOrganizations: TrustedOrganizationCategory[] = [
           src: "/images/partners/sonas.jpg",
           alt: "SONAS — Société Nationale d'Assurances",
           width: 1280,
-          height: 888,
+          height: 714,
+        },
+        plate: "light",
+      },
+      {
+        name: "DGI",
+        legalName: "Direction Générale des Impôts",
+        logo: {
+          src: "/images/partners/dgi.png",
+          alt: "DGI — Direction Générale des Impôts",
+          width: 1024,
+          height: 1024,
         },
         plate: "dark",
       },
-    ],
-  },
-  {
-    category: "Mines et Ressources Naturelles — Secteur Public",
-    organizations: [
       {
         name: "CTCPM",
         legalName: "Cellule Technique de Coordination et de Planification Minière",
@@ -129,22 +151,6 @@ export const trustedOrganizations: TrustedOrganizationCategory[] = [
           height: 490,
         },
         plate: "light",
-      },
-    ],
-  },
-  {
-    category: "Administration Publique et Finances",
-    organizations: [
-      {
-        name: "DGI",
-        legalName: "Direction Générale des Impôts",
-        logo: {
-          src: "/images/partners/dgi.jpg",
-          alt: "DGI — Direction Générale des Impôts",
-          width: 1280,
-          height: 1280,
-        },
-        plate: "dark",
       },
     ],
   },

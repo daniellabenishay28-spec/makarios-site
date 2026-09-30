@@ -8,45 +8,33 @@ import {
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
- * Section "organisations qui nous ont fait confiance" — Projects/Portfolio.
+ * Section "Nos références" — Projects/Portfolio.
  *
- * Composition en silhouette de pyramide / skyline : chaque catégorie est un
- * "bâtiment" plein blanc dont la hauteur (desktop) ou la largeur (tablette
- * et mobile) suit une progression symétrique — 01 et 07 au plus bas, 04
- * (Santé et Pharmacie) au sommet. Le logo vit à l'intérieur du bâtiment,
- * sans cadre indépendant autour de lui : c'est la silhouette blanche
- * elle-même qui doit former la montagne, pas une rangée de cartes. Le
- * numéro (vert) flotte juste au-dessus de chaque bâtiment, la catégorie et
- * la précision légale sont sous la ligne de base, en petit, pour ne jamais
- * dominer les logos. Aucun angle arrondi, aucune ombre, aucun dégradé —
- * uniquement noir / blanc / vert #32B44A, conformément à l'identité du
- * site.
+ * Composition en 5 colonnes institutionnelles, inspirée de la référence
+ * fournie par Makarios : chaque catégorie occupe une colonne, avec son nom
+ * en haut et ses logos empilés verticalement en dessous. L'ensemble de la
+ * section repose sur UN SEUL fond blanc continu (pas de plaque blanche
+ * individuelle derrière chaque logo, pas de carte, pas de cadre, pas
+ * d'ombre) : les logos sont des éléments graphiques intégrés directement à
+ * la composition, jamais des vignettes encadrées. Une fine séparation
+ * verticale (noir à très faible opacité) distingue les colonnes — jamais
+ * une grille de cartes indépendantes. La catégorie 01 (Publicité,
+ * Communication & Audiovisuel) regroupe DI-WAY et DISPROMALT dans une
+ * seule colonne ; la catégorie 05 (Secteur public) regroupe SONAS, DGI et
+ * CTCPM dans une seule colonne — jamais de colonnes supplémentaires
+ * au-delà de 5.
  *
- * La catégorie 01 (deux organisations : DISPROMALT + DI-WAY) reste une
- * seule colonne — les deux logos partagent le même bâtiment, au niveau le
- * plus bas de la pyramide, jamais une 8ᵉ colonne.
+ * Aucun nom d'organisation ni raison sociale n'apparaît sous les logos, sur
+ * aucun format (desktop, tablette, mobile) : chaque organisation est
+ * identifiée par son seul logo. Les seuls textes de la composition sont le
+ * titre "Nos références", les 5 numéros (01→05) et les 5 noms de
+ * catégorie.
+ *
+ * Desktop et tablette (≥768px) : 5 colonnes horizontales, séparateurs
+ * verticaux. Mobile (<768px) : les 5 catégories s'empilent verticalement,
+ * séparées par une fine ligne horizontale, pour rester lisibles sans
+ * jamais devenir une grille uniforme.
  */
-
-/**
- * Distance symétrique au sommet (catégorie 04, index 3) pour chacune des 7
- * catégories — 0 = au sommet (04), 3 = le plus loin du sommet (01 et 07).
- */
-const PEAK_INDEX = 3;
-function tierDistance(index: number): 0 | 1 | 2 | 3 {
-  return Math.abs(index - PEAK_INDEX) as 0 | 1 | 2 | 3;
-}
-
-/** Hauteur du bâtiment (desktop, silhouette horizontale) — 0 = sommet (le plus haut), 3 = le plus bas. */
-const DESKTOP_TIER_HEIGHT: Record<0 | 1 | 2 | 3, number> = { 0: 260, 1: 214, 2: 168, 3: 122 };
-/** Largeur du bâtiment (tablette/mobile, silhouette verticale en losange) — 0 = sommet (le plus large), 3 = le plus étroit. */
-const MOBILE_TIER_WIDTH: Record<0 | 1 | 2 | 3, string> = { 0: "100%", 1: "86%", 2: "70%", 3: "54%" };
-/** Taille max d'un logo à l'intérieur du bâtiment — le sommet met le logo le plus en valeur. */
-const LOGO_MAX_H: Record<0 | 1 | 2 | 3, string> = {
-  0: "max-h-[96px]",
-  1: "max-h-[76px]",
-  2: "max-h-[60px]",
-  3: "max-h-[44px]",
-};
 
 export function TrustedOrganizations() {
   return (
@@ -54,110 +42,78 @@ export function TrustedOrganizations() {
       <div aria-hidden className="w-8 h-px bg-green mb-6" />
       <Reveal
         as="span"
-        className="font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-white/55 mb-5"
+        className="font-body font-semibold text-[11.5px] tracking-[.16em] uppercase text-black/55 mb-5"
       >
         {trustedOrganizationsIntro.eyebrow}
       </Reveal>
       <Reveal
         as="h2"
         delay={90}
-        className="font-display font-bold text-3xl md:text-[42px] leading-tight text-white max-w-3xl mb-16 md:mb-24"
+        className="font-display font-bold text-3xl md:text-[42px] leading-tight text-black max-w-3xl mb-16 md:mb-20"
       >
         {trustedOrganizationsIntro.title}
       </Reveal>
 
-      {/* Desktop (≥1200px) — silhouette de pyramide horizontale */}
-      <div className="hidden desktop:block">
-        <div className="grid grid-cols-7 gap-x-4 items-end h-[300px]">
-          {trustedOrganizations.map((group, i) => {
-            const tier = tierDistance(i);
-            return (
-              <div key={group.category} className="flex flex-col items-center justify-end h-full">
-                <span className="font-display font-bold text-green text-[13px] mb-2.5">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div
-                  className="w-full bg-white flex items-center justify-center gap-3 px-3"
-                  style={{ height: `${DESKTOP_TIER_HEIGHT[tier]}px` }}
-                >
-                  {group.organizations.map((org) => (
-                    <OrgLogo key={org.name} org={org} maxH={LOGO_MAX_H[tier]} />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div aria-hidden className="h-px bg-white/15" />
-        <div className="grid grid-cols-7 gap-x-4 mt-5">
-          {trustedOrganizations.map((group) => (
-            <div key={group.category} className="flex flex-col items-center text-center px-1 gap-2">
-              <h3 className="font-body font-semibold text-[9.5px] tracking-[.06em] uppercase text-white/50 leading-snug">
-                {group.category}
-              </h3>
-              <div className="flex flex-col gap-1">
-                {group.organizations.map((org) => (
-                  <OrgCaption key={org.name} org={org} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Mobile (<768px) — 5 catégories empilées verticalement */}
+      <div className="flex md:hidden flex-col divide-y divide-black/10">
+        {trustedOrganizations.map((group, i) => (
+          <CategoryColumn key={group.category} group={group} index={i} variant="stacked" />
+        ))}
       </div>
 
-      {/* Tablette & mobile (<1200px) — silhouette de pyramide verticale (losange) */}
-      <div className="flex desktop:hidden flex-col items-center gap-8">
-        {trustedOrganizations.map((group, i) => {
-          const tier = tierDistance(i);
-          return (
-            <div key={group.category} className="flex flex-col items-center" style={{ width: MOBILE_TIER_WIDTH[tier] }}>
-              <span className="font-display font-bold text-green text-[13px] mb-2.5">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="w-full bg-white flex items-center justify-center gap-3 px-4 py-6">
-                {group.organizations.map((org) => (
-                  <OrgLogo key={org.name} org={org} maxH={LOGO_MAX_H[tier]} />
-                ))}
-              </div>
-              <div className="mt-4 flex flex-col items-center text-center gap-1.5">
-                <h3 className="font-body font-semibold text-[10.5px] tracking-[.06em] uppercase text-white/50 leading-snug">
-                  {group.category}
-                </h3>
-                <div className="flex flex-col gap-0.5">
-                  {group.organizations.map((org) => (
-                    <OrgCaption key={org.name} org={org} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      {/* Tablette & desktop (≥768px) — 5 colonnes horizontales */}
+      <div className="hidden md:flex divide-x divide-black/10">
+        {trustedOrganizations.map((group, i) => (
+          <CategoryColumn key={group.category} group={group} index={i} variant="row" />
+        ))}
       </div>
     </div>
   );
 }
 
-function OrgLogo({ org, maxH }: { org: TrustedOrganization; maxH: string }) {
+function CategoryColumn({
+  group,
+  index,
+  variant,
+}: {
+  group: (typeof trustedOrganizations)[number];
+  index: number;
+  variant: "row" | "stacked";
+}) {
+  const isRow = variant === "row";
   return (
-    <div className="flex-1 min-w-0 flex items-center justify-center">
+    <div
+      className={
+        isRow
+          ? "flex-1 min-w-0 flex flex-col items-center px-4 desktop:px-6 py-2"
+          : "flex flex-col items-center py-10 first:pt-0 last:pb-0"
+      }
+    >
+      <span className="font-display font-bold text-green text-[13px] mb-3">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <h3 className="font-body font-semibold text-[10.5px] md:text-[11px] tracking-[.08em] uppercase text-black/60 text-center leading-snug max-w-[180px] min-h-[2.6em]">
+        {group.category}
+      </h3>
+      <div className="flex flex-col items-center gap-6 md:gap-7 mt-7 md:mt-8 w-full">
+        {group.organizations.map((org) => (
+          <OrgPlate key={org.name} org={org} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OrgPlate({ org }: { org: TrustedOrganization }) {
+  return (
+    <div className="w-full max-w-[200px] flex items-center justify-center px-5 py-2">
       <Image
         src={withBasePath(org.logo.src)}
         alt={org.logo.alt}
         width={org.logo.width}
         height={org.logo.height}
-        className={`${maxH} max-w-full w-auto h-auto object-contain`}
+        className="max-h-[56px] md:max-h-[64px] max-w-full w-auto h-auto object-contain"
       />
-    </div>
-  );
-}
-
-function OrgCaption({ org }: { org: TrustedOrganization }) {
-  return (
-    <div>
-      <div className="font-body font-semibold text-[10.5px] text-white/80 leading-snug">{org.name}</div>
-      {org.legalName ? (
-        <div className="font-body text-[9.5px] text-white/40 leading-snug">{org.legalName}</div>
-      ) : null}
     </div>
   );
 }

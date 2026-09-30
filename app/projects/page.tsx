@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-import { Cta } from "@/components/cta/Cta";
-import { ProjectPlaceholder } from "@/components/projects/ProjectPlaceholder";
 import { TrustedOrganizations } from "@/components/projects/TrustedOrganizations";
-import { projectsPlaceholder } from "@/content/placeholders";
-import { ctas } from "@/content/ctas";
 import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
@@ -34,34 +30,9 @@ export default function ProjectsPage() {
         >
           PROJECTS / PORTFOLIO
         </Reveal>
-        <Reveal
-          as="div"
-          delay={180}
-          className="flex items-center gap-4 font-body font-semibold text-[13px] tracking-[.1em] uppercase text-white/75"
-        >
-          <span>PROBLÈME</span>
-          <span className="text-green">→</span>
-          <span>SOLUTION</span>
-          <span className="text-green">→</span>
-          <span>RÉSULTAT</span>
-        </Reveal>
       </div>
 
-      <div className="border-t border-white/10 px-6 md:px-20 py-14 md:py-16 flex flex-col gap-10 md:gap-12">
-        <ProjectPlaceholder />
-
-        <div className="flex flex-col gap-8">
-          <Reveal as="p" className="font-body italic text-lg text-white/62 max-w-xl">
-            {projectsPlaceholder.editorialNote}
-          </Reveal>
-          <Reveal as="div" delay={90} className="flex flex-col md:flex-row gap-4 md:gap-10">
-            <Cta {...ctas.discoverMethod} />
-            <Cta {...ctas.letsTalk} tone="muted" />
-          </Reveal>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10 px-6 md:px-20 py-16 md:py-24">
+      <div className="bg-white px-6 md:px-20 py-16 md:py-24">
         <TrustedOrganizations />
       </div>
     </div>
