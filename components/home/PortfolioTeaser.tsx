@@ -18,12 +18,31 @@ import { ctas } from "@/content/ctas";
  * strictement son fichier et son arriÃ¨re-plan d'origine, posÃ© directement
  * sur le fond blanc continu de la section (mÃªme traitement que /projects).
  * Un CTA "View portfolio â†’" renvoie vers la page complÃ¨te /projects.
+ *
+ * En-tÃªte de section ajoutÃ© au-dessus de "Nos rÃ©fÃ©rences" : mÃªme
+ * traitement typographique, espacement et hiÃ©rarchie visuelle que l'en-tÃªte
+ * de la section "Our Solutions" de la Home (cf. SECTION 4 dans
+ * app/page.tsx â€” eyebrow `text-xs tracking-[.16em] uppercase` + titre
+ * `font-display font-bold text-3xl md:text-[42px] mt-4`), simplement
+ * adaptÃ© en texte noir puisque cette section a un fond blanc (contrairement
+ * Ã  "Our Solutions", sur fond noir). Le contenu "Nos rÃ©fÃ©rences" / logos /
+ * CTA reste inchangÃ© en dessous.
  */
 const allOrganizations = trustedOrganizations.flatMap((group) => group.organizations);
 
 export function PortfolioTeaser() {
   return (
     <section className="bg-white text-black px-6 md:px-20 py-16 md:py-24 flex flex-col gap-10 md:gap-14">
+      <div>
+        <div aria-hidden className="w-8 h-px bg-green mb-6" />
+        <Reveal as="span" className="font-body font-semibold text-xs tracking-[.16em] uppercase text-black/55">
+          06 â€” PROJECTS / PORTFOLIO
+        </Reveal>
+        <Reveal as="div" delay={90} className="font-display font-bold text-3xl md:text-[42px] text-black mt-4">
+          PROJECTS / PORTFOLIO
+        </Reveal>
+      </div>
+
       <div className="flex items-end justify-between gap-5 flex-wrap">
         <Reveal
           as="h2"
