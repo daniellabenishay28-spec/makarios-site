@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import { withBasePath } from "@/lib/basePath";
 import { trustedOrganizations, trustedOrganizationsIntro } from "@/content/trustedOrganizations";
 import { Reveal } from "@/components/motion/Reveal";
@@ -6,27 +6,27 @@ import { Cta } from "@/components/cta/Cta";
 import { ctas } from "@/content/ctas";
 
 /**
- * Teaser "Nos rÃ©fÃ©rences" â€” Home.
+ * Teaser "Nos références" — Home.
  *
- * Reprend les mÃªmes 8 organisations que la page /projects (mÃªme source de
- * donnÃ©es, content/trustedOrganizations.ts, mÃªmes fichiers logos rÃ©els
- * inchangÃ©s) mais sans le dÃ©coupage en 5 catÃ©gories : ici, un simple aperÃ§u
- * (teaser) prÃ©sentant les logos sur une seule ligne horizontale sur
- * desktop, qui repasse Ã  la ligne sur tablette/mobile plutÃ´t que de
- * rÃ©duire excessivement les logos. Aucun nom d'organisation sous les
+ * Reprend les mêmes 8 organisations que la page /projects (même source de
+ * données, content/trustedOrganizations.ts, mêmes fichiers logos réels
+ * inchangés) mais sans le découpage en 5 catégories : ici, un simple aperçu
+ * (teaser) présentant les logos sur une seule ligne horizontale sur
+ * desktop, qui repasse à la ligne sur tablette/mobile plutôt que de
+ * réduire excessivement les logos. Aucun nom d'organisation sous les
  * logos, aucune carte, aucun cadre, aucune ombre : chaque logo garde
- * strictement son fichier et son arriÃ¨re-plan d'origine, posÃ© directement
- * sur le fond blanc continu de la section (mÃªme traitement que /projects).
- * Un CTA "View portfolio â†’" renvoie vers la page complÃ¨te /projects.
+ * strictement son fichier et son arrière-plan d'origine, posé directement
+ * sur le fond blanc continu de la section (même traitement que /projects).
+ * Un CTA "View portfolio →" renvoie vers la page complète /projects.
  *
- * En-tÃªte de section ajoutÃ© au-dessus de "Nos rÃ©fÃ©rences" : mÃªme
- * traitement typographique, espacement et hiÃ©rarchie visuelle que l'en-tÃªte
+ * En-tête de section ajouté au-dessus de "Nos références" : même
+ * traitement typographique, espacement et hiérarchie visuelle que l'en-tête
  * de la section "Our Solutions" de la Home (cf. SECTION 4 dans
- * app/page.tsx â€” eyebrow `text-xs tracking-[.16em] uppercase` + titre
+ * app/page.tsx — eyebrow `text-xs tracking-[.16em] uppercase` + titre
  * `font-display font-bold text-3xl md:text-[42px] mt-4`), simplement
- * adaptÃ© en texte noir puisque cette section a un fond blanc (contrairement
- * Ã  "Our Solutions", sur fond noir). Le contenu "Nos rÃ©fÃ©rences" / logos /
- * CTA reste inchangÃ© en dessous.
+ * adapté en texte noir puisque cette section a un fond blanc (contrairement
+ * à "Our Solutions", sur fond noir). Le contenu "Nos références" / logos /
+ * CTA reste inchangé en dessous.
  */
 const allOrganizations = trustedOrganizations.flatMap((group) => group.organizations);
 
@@ -36,7 +36,7 @@ export function PortfolioTeaser() {
       <div>
         <div aria-hidden className="w-8 h-px bg-green mb-6" />
         <Reveal as="span" className="font-body font-semibold text-xs tracking-[.16em] uppercase text-black/55">
-          06 â€” PROJECTS / PORTFOLIO
+          06 — PROJECTS / PORTFOLIO
         </Reveal>
         <Reveal as="div" delay={90} className="font-display font-bold text-3xl md:text-[42px] text-black mt-4">
           PROJECTS / PORTFOLIO
@@ -71,4 +71,3 @@ export function PortfolioTeaser() {
     </section>
   );
 }
-
